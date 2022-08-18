@@ -1,0 +1,120 @@
+.container{
+    width: 100%;
+}
+.walletDetails{
+    display:flex;
+    width:100%;
+    justify-content:space-between;
+    @media(max-width:900px){
+        flex-direction:column-reverse;
+    }
+}
+.walletDetails_right{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    button{
+        cursor: pointer;
+        outline:none;
+        font-size:14px;
+        padding:10px 25px;
+        border-radius: 5px;
+        transition:0.2s;
+      
+    }
+}
+.active{
+    
+    background-color:black;
+    color:white;
+    &:hover{
+        background-color:#ff4545;
+        box-shadow: 0px 0px 10px 0px #ff4545;
+    }
+}
+.mrkcoins{
+    margin:15px 0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    border-radius: 10px;
+    color:white;
+    padding:10px 40px;
+
+
+
+//     background: #D38312;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #A83279, #D38312);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #A83279, #D38312); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+background: #8E0E00;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #1F1C18, #8E0E00);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #1F1C18, #8E0E00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+.balance{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    border-radius: 10px;
+    color:white;
+    padding:10px 40px;
+    // background: #9D50BB;  /* fallback for old browsers */
+    // background: -webkit-linear-gradient(to right, #6E48AA, #9D50BB);  /* Chrome 10-25, Safari 5.1-6 */
+    // background: linear-gradient(to right, #6E48AA, #9D50BB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    span{
+
+    }
+    p{
+
+    }
+}
+.redeem{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    border-radius: 10px;
+    color:white;
+    padding:10px 40px;
+
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0f9b0f, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0f9b0f, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+
+.balance , .redeem, .mrkcoins{
+    transition:0.2s;
+    &:hover{
+        box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+        cursor:default;
+    }
+    span{
+        font-size:15px;
+    }
+    p{
+        font-size:20px;
+        font-weight:bold;
+    }
+}
+.inactive{
+    background-color:rgba(0,0,0,0.7);
+    color:white;
+    &:hover{
+        background-color:rgba(0,0,0,0.7);
+        color:white;
+        cursor:not-allowed;
+    }
+}

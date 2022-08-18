@@ -1,0 +1,120 @@
+.app{
+    display: flex;
+    justify-content:center;
+    width:100%;    
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:20px;
+    width:70%;
+    
+    input{
+        outline:none;
+        border:0.5px rgb(227, 227, 227) solid;
+        padding:10px;
+        font-size: 18px;
+        margin-bottom:20px;
+        border-radius: 5px;
+        &:hover, &:focus{
+            border:1px black solid;
+        }
+    }
+    .input{
+        display: flex;
+        flex-direction: column;
+        width:40%;
+        label{
+            margin:4px 0;
+        }
+    }
+    .loginBtn{
+        width:40%;
+        border:none;
+        outline:none;
+        background-color:black;
+        color:white;
+        font-size:16px;
+        padding:12px 0;
+        border-radius: 5px;
+        transition:0.2s;
+        &:hover{
+            background-color:rgba(0,0,0,0.3);
+        }
+
+    }
+    .fbBtn{
+        font-weight: bold;
+        width:40%;
+        display:flex;
+        align-items: center;
+        justify-content:center;
+        background:#0165E1;
+        color:white;
+        border-radius: 5px;
+        cursor: pointer;
+        padding:0 10px;
+        transition:0.2s;
+        img{
+            width:40px;
+        }
+        p{
+            flex:1;
+            text-align:center;
+        }
+        &:hover{
+            opacity: 0.7;
+            transform:translateY(-3px);
+        } 
+    }
+    .googleBtn{
+        font-weight: bold;
+        transition:0.2s;
+        width:40%;
+        display:flex;
+        align-items: center;
+        justify-content:center;
+        margin-top:20px;
+        cursor: pointer;
+        padding:0 10px;
+        border-radius: 5px;
+        border:1px rgba(0,0,0,0.2) solid;
+        img{
+            width:30px;
+        }
+        p{
+            flex:1;
+            text-align:center;
+        }
+        &:hover{
+            opacity: 0.6;
+            transform:translateY(-3px);
+        } 
+    }
+    .signUpLink{
+        span{
+            font-weight:500;
+            cursor: pointer;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+    .error{
+        width:40%;
+        p{        
+            margin-top:-20px;
+            color:red;
+            font-size:12px;
+        }
+    }
+    @media(max-width:800px){
+        width:100%;
+        align-items: center;
+        margin: auto;
+        .input , .loginBtn, .fbBtn, .googleBtn, .error{
+            width:90%;
+        }
+    }
+}

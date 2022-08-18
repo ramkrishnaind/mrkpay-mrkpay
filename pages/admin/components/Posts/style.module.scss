@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.addPostBtn{
+    padding:8px 18px;
+    border:none;
+    outline:none;
+    color:white;
+    background-color: black;
+    border-radius: 5px;
+    border:1px black solid;
+    font-weight:500;
+    margin-bottom:40px;
+    &:hover{
+        background-color:white;
+        color:black;
+    }
+}
+.posts{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}

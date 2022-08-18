@@ -1,0 +1,55 @@
+
+.container{
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+    .title{
+        width:100%;
+        display: flex;
+    }
+    input{
+        outline:none;
+        border:0.5px rgb(227, 227, 227) solid;
+        padding:10px;
+        font-size: 18px;
+        margin-bottom:20px;
+        border-radius: 5px;
+        &:hover, &:focus{
+            border:1px black solid;
+        }
+    }
+    .input{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        label{
+            margin:4px 0;
+        }
+        @media(max-width:800px){
+            width:100%;
+        }
+    }
+    .saveBtn{
+        border:1.5px black solid;
+        outline:none;
+        width: 100%;
+        background-color:black;
+        color:white;
+        font-size:14px;
+        padding:5px 12px;
+        border-radius: 5px;
+        transition:0.2s;
+        &:hover{
+            background-color:white;
+            color:black;
+        }
+
+    }
+}
+.btnDiv{
+    margin-top: 20px;
+    display:flex;
+    width:10em;
+    justify-content:flex-end;
+}

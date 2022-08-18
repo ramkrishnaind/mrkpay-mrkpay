@@ -1,0 +1,47 @@
+.container{
+    width:90%;
+    display:flex;
+    border-bottom: 1px gray solid;
+    margin-bottom: 10px;
+    align-items:center;
+    img{
+        height:100px;
+        margin-right: 15px;
+    }
+    .right{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width:100%;
+        p{
+            margin:0;
+        }
+    }
+}
+.head{
+    display:flex;
+    align-items:center;
+    width:100%;
+    .title{
+        margin-right: 20px;
+        font-weight: bold;
+        font-size: 18px;
+        flex:1;
+    }
+    .author{
+        color:gray;
+        background-color:lightgray;
+        margin:0 20px;
+    }
+    button{
+        background-color:red;
+    }
+}
+.body{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+            line-clamp: 3; 
+    -webkit-box-orient: vertical;
+}

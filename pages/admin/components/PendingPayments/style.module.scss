@@ -1,0 +1,64 @@
+.container{
+    width:100%;
+    .submit{
+        width:100%;
+        margin-top:20px;
+        background:#24A0ED;
+        padding:8px;
+        color:white;
+        border:none;
+        outline:none;
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+        &:hover{
+            background:#008ce3;
+        }
+    }
+}
+.chooseFile{
+    width:100%;
+    border-radius: 5px;
+    input{
+        width:100%;
+        font-size: 16px;
+        display: flex;
+        border:1px lightgray solid;
+    }
+
+}
+.dataContainer{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    align-items: center;
+}
+.code{
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    border:1px lightgray solid;
+    text-align:center;
+    span{
+        flex:1;
+        text-transform: capitalize;
+        font-weight:bold;
+    }
+    p{
+        flex:1;
+    }
+}
+.codeHeader{
+    width:100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    border:2px black solid;
+    font-weight:bold;
+    text-transform: uppercase;
+    p,span{
+        flex: 1;
+        text-align: center;
+    }
+}

@@ -1,0 +1,16 @@
+.container{
+    width:50%;
+    img{
+
+    }
+    h2{
+        font-size: 20px;
+        cursor: pointer;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    @media(max-width:800px){
+        display: none;
+    }
+}

@@ -1,0 +1,15 @@
+.container{
+    display:flex;
+    flex-direction: column;
+    color:black;
+    button{
+        color:white;
+        background-color:red;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 5px;
+        &:hover{
+            background-color:rgb(223, 2, 2);
+        }
+    }
+}
