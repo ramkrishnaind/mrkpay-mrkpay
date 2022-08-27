@@ -21,7 +21,14 @@ function Post({ data, id, updatePosts }) {
 
   return (
     <div className={styles.container}>
-      <img src={data.imgUrl} alt="img" className={data.left} />
+      <div className="w-[15rem]">
+        <img
+          src={data.imgUrl}
+          alt="img"
+          style={{ width: "100%" }}
+          className={` object-cover rounded-lg pr-3 w-100`}
+        />
+      </div>
 
       <div className={styles.right}>
         <div className={styles.head}>

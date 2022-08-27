@@ -4,23 +4,42 @@ import { db } from "./../../../../../app/firebase/config";
 import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 function Transactions() {
   const [transactions, setTransactions] = useState([]);
+  const [users, setUsers] = useState([]);
   const [totalCoinsRedeem, setTotalCoinsRedeem] = useState(0);
   const [totalCoinsGenerated, setTotalCoinsGenerated] = useState(0);
   const [filteredData, setFilteredData] = useState([]);
   const [selected, setSelected] = useState("all");
+  const compareFunc = (a, b) => {
+    return b.dateObj - a.dateObj;
+  };
   useEffect(() => {
     (async function () {
       console.log("Fetching transactions...");
       const collectionRef = collection(db, "transactions");
       const snapShots = await getDocs(collectionRef);
       let totalTemp = 0;
+      const objToSet = [];
+      const users = [];
       const readableTr = snapShots.docs.map((obj) => {
         const date = obj.id.slice(0, 10);
         totalTemp += obj.data().coinsAmount;
+        const found = objToSet.find((i) => i.date == date);
+        if (!users.includes(obj.data().createdBy))
+          users.push(obj.data().createdBy);
+        if (!found) {
+          objToSet.push({ date, data: obj.data(), dateObj: new Date(date) });
+        } else {
+          found.coinsAmount += obj.data().coinsAmount;
+          found.amount += obj.data().amount;
+        }
+        console.log("objToSet", objToSet);
+        console.log("obj.data()", obj.data());
         return { date, data: obj.data() };
       });
-      setTransactions(readableTr);
+      objToSet.sort(compareFunc);
+      setTransactions(objToSet);
       setTotalCoinsRedeem(totalTemp);
+      setUsers(users);
 
       const collectionRef2 = collection(db, "users");
       const snapShots2 = await getDocs(collectionRef2);
@@ -32,6 +51,7 @@ function Transactions() {
     })();
   }, []);
   function handleFilter(type) {
+    debugger;
     if (type == "all") {
       setSelected(type);
       setFilteredData([]);
@@ -104,13 +124,14 @@ function Transactions() {
       </div>
       <h3>Total Coins Generated:{totalCoinsGenerated}</h3>
       <h3>Total Coins Redeemed:{totalCoinsRedeem}</h3>
+      <h3>Total Users:{users.length}</h3>
       {filteredData.length > 0 ? (
         <table>
           <thead>
             <tr>
               <td>Date</td>
               <td>Coins</td>
-              <td>Ruppees</td>
+              <td>Rupees</td>
             </tr>
           </thead>
           <tbody>
@@ -131,7 +152,7 @@ function Transactions() {
             <tr>
               <td>Date</td>
               <td>Coins</td>
-              <td>Ruppees</td>
+              <td>Rupees</td>
             </tr>
           </thead>
           <tbody>

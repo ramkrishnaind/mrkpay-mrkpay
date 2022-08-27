@@ -36,7 +36,7 @@ function News(props) {
       if (oldTitle[i] == " ") {
         slug += "-";
       } else {
-        slug += oldTitle[i].toLowerCase();
+        slug += oldTitle[i]?.toLowerCase();
       }
     }
     return slug;

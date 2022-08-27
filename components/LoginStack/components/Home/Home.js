@@ -41,7 +41,7 @@ function Home({ data }) {
       if (oldTitle[i] == " ") {
         slug += "-";
       } else {
-        slug += oldTitle[i].toLowerCase();
+        slug += oldTitle[i]?.toLowerCase();
       }
     }
     return slug;
