@@ -1,0 +1,12 @@
+.container {
+  height: 300px;
+  padding: 0 !important;
+}
+.container > div {
+  width: 100% !important;
+  /* background-color: blue; */
+}
+.ql-container > .ql-editor {
+  width: 100% !important;
+  background-color: blueviolet;
+}

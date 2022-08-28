@@ -17,3 +17,204 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+ul {
+  list-style: none;
+  padding: 0;
+}
+.ql-editor,
+.ql-container {
+  height: 70% !important;
+}
+
+.react-tags {
+  position: relative;
+  padding: 6px 0 0 6px;
+  border: 1px solid #d1d1d1;
+  border-radius: 1px;
+  display: flex;
+  /* shared font styles */
+  font-size: 1em;
+  line-height: 1.2;
+
+  /* clicking anywhere will focus the input */
+  cursor: text;
+}
+
+.react-tags.is-focused {
+  border-color: #b1b1b1;
+}
+
+.react-tags__selected {
+  display: inline;
+  vertical-align: middle;
+}
+
+.react-tags__selected-tag {
+  vertical-align: middle;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 6px 6px;
+  padding: 6px 8px;
+  border: 1px solid #d1d1d1;
+  border-radius: 2px;
+  background: #f1f1f1;
+
+  /* match the font styles */
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.react-tags__selected-tag:after {
+  content: "\2715";
+  color: #aaa;
+  margin-left: 8px;
+}
+
+.react-tags__selected-tag:hover,
+.react-tags__selected-tag:focus {
+  border-color: #b1b1b1;
+}
+
+.react-tags__search {
+  display: inline-block;
+  flex: 1;
+  /* match tag layout */
+  padding: 7px 2px;
+  margin-bottom: 6px;
+  /* prevent autoresize overflowing the container */
+  max-width: 100%;
+}
+
+@media screen and (min-width: 30em) {
+  .react-tags__search {
+    /* this will become the offsetParent for suggestions */
+    position: relative;
+  }
+}
+.react-tags__search-wrapper {
+  display: flex;
+  width: 100%;
+}
+.react-tags__search-input {
+  flex: 1;
+  /* prevent autoresize overflowing the container */
+  max-width: 100%;
+  min-width: 150px;
+  /* remove styles and layout from this element */
+  margin: 0;
+  padding: 6px 8px;
+  border: 0;
+  outline: none;
+  width: 150px;
+  /* match the font styles */
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.react-tags__search input::-ms-clear {
+  display: none;
+}
+
+.react-tags__suggestions {
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  float: left;
+  width: 100%;
+}
+.react-tags__suggestions * {
+  float: left;
+}
+@media screen and (min-width: 30em) {
+  .react-tags__suggestions {
+    width: 240px;
+  }
+}
+
+.react-tags__suggestions ul {
+  margin: 4px -1px;
+  padding: 0;
+  list-style: none;
+  background: white;
+  border: 1px solid #d1d1d1;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.react-tags__suggestions li {
+  border-bottom: 1px solid #ddd;
+  padding: 6px 8px;
+}
+
+.react-tags__suggestions li mark {
+  text-decoration: underline;
+  background: none;
+  font-weight: 600;
+}
+
+.react-tags__suggestions li:hover {
+  cursor: pointer;
+  background: #eee;
+}
+
+.react-tags__suggestions li.is-active {
+  background: #b7cfe0;
+}
+
+.react-tags__suggestions li.is-disabled {
+  opacity: 0.5;
+  cursor: auto;
+}
+.pagination {
+  justify-content: center;
+  display: flex;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul.pagination li {
+  display: inline-block;
+  width: 30px;
+  border: 1px solid #e2e2e2;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+}
+ul.pagination li {
+  border-radius: 50%;
+}
+ul.pagination li a {
+  text-decoration: none;
+  color: #337ab7;
+  font-size: 20px;
+}
+ul.pagination li.previous,
+ul.pagination li.next {
+  background-color: cornflowerblue;
+}
+
+ul.pagination li.previous.disabled a,
+ul.pagination li.next.disabled a {
+  color: cadetblue;
+}
+ul.pagination li.previous a,
+ul.pagination li.next a {
+  font-size: 0.8rem;
+  vertical-align: middle;
+  display: inline-block;
+  margin: auto;
+  color: #eee;
+}
+ul.pagination li.previous.disabled,
+ul.pagination li.next.disabled {
+  background-color: #e2e2e2;
+}
+ul.pagination li.selected a {
+  color: white;
+}
+ul.pagination li.selected {
+  background-color: #337ab7;
+}

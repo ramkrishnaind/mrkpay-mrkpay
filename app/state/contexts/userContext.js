@@ -6,6 +6,12 @@ const initialState = {
   userData: null,
   posts: [],
   firstVisit: false,
+  categories: [],
+  categoryPosts: {},
+  currentCategory: "",
+  currentPosts: [],
+  more: false,
+  outsideSearch: true,
 };
 export const UserContext = createContext(initialState);
 

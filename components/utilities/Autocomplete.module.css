@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  width: 100%;
+  /* width: 85%; */
+}
+.reactTags {
+  padding: 10px;
+  margin: 10px;
+}
+.container label {
+  color: rgb(25, 76, 92);
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  padding-left: 10px;
+}
+.reactTags {
+  border-radius: 5px;
+  outline: none;
+}
+.labelContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 85%;
+}
+.labelContainer label {
+  color: rgb(25, 76, 92);
+  font-weight: bold;
+}
