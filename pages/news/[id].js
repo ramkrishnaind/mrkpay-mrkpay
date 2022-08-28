@@ -197,7 +197,10 @@ function News() {
             <h3 className="text-4xl py-3 capitalize">
               {targetPost.data.title}
             </h3>
-            <img src={targetPost.data.imgUrl} className="w-full object-cover" />
+            <img
+              src={targetPost.data.imgUrl}
+              className="w-full object-cover  md:max-h-[25rem]"
+            />
             <p
               style={{ textAlign: "justify" }}
               dangerouslySetInnerHTML={createMarkup()}
