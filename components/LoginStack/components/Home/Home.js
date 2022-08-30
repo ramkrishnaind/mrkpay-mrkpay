@@ -61,11 +61,13 @@ function Home({ data }) {
   }
   return (
     <div className={styles.container}>
-      <h2>Welcome, {data.name} 😎</h2>
-      <p className={styles.date}>{currentDate}.</p>
-      <div className={styles.percentage1}>
-        <h2>
-          Coins: <span>{data.coinsGenerated}</span>
+      <h2 className="text-lg text-center  my-5">Welcome, {data.name} 😎</h2>
+      <p className={`${styles.date} text-lg text-center  my-5`}>
+        {currentDate}.
+      </p>
+      <div className={`flex  ${styles.percentage1}`}>
+        <h2 className="min-w-[6rem] text-base mb-3">
+          Coins: <span>{data.coinsGenerated || 0}</span>
         </h2>
       </div>
       <div className={styles.btnContainer}>

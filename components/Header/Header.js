@@ -2,15 +2,17 @@ import Head from "next/head";
 import Link from "next/link";
 // import searchIcon from "../../public/search-icon.svg";
 import { UserContext as AppContext } from "../../app/state/contexts/userContext";
+import { GetAdminContext } from "../../app/state/contexts/adminContext";
 import { useState, useContext, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import useOutside from "../../hooks/useOutside";
 import useOutsideSearch from "../../hooks/useOutsideSearch";
 import styles from "./style.module.scss";
 import getWindowDimensions from "../../hooks/useWindowDimensions";
-export default function Home({ width = 59 }) {
+export default function Home({ width, marginX }) {
   const { height, width: widthScreen } = getWindowDimensions();
   const [state, dispatch] = useContext(AppContext);
+  const [adminState, dispatchAdmin] = useContext(GetAdminContext);
   const router = useRouter();
   const [navbar, setNavbar] = useState(false);
   const [searchClick, setSearchClick] = useState(false);
@@ -64,7 +66,9 @@ export default function Home({ width = 59 }) {
   // };
   console.log("extra", extraCategories);
   return (
-    <div className="md:max-w-7xl sticky top-0 z-10">
+    <div
+      className={`sticky top-0 z-10 ${marginX ? ` md:mx-20` : ` md:max-w-7xl`}`}
+    >
       <Head>
         {/* <title>Create Next Responsive Navbar With Tailwind CSS</title> */}
         {/* <meta
@@ -93,9 +97,11 @@ export default function Home({ width = 59 }) {
                     onClick={() => dispatch({ type: "clear-currentCategory" })}
                   />
                 </Link>
-                <div className="hidden rounded-lg h-[1.5rem] align-middle md:flex bg-red-500 w-15 px-2 text-orange-200">
-                  Earn Coin
-                </div>
+                <Link href="/user">
+                  <div className="hidden cursor-pointer rounded-lg h-[1.5rem] align-middle md:flex bg-red-500 w-15 px-2 text-orange-200">
+                    Earn Coin
+                  </div>
+                </Link>
               </div>
 
               <div className="flex md:hidden items-center">
@@ -495,16 +501,67 @@ export default function Home({ width = 59 }) {
               }`}
             >
               <ul className=" flex flex-col md:border-l-2 md:pl-2 border-orange-500 justify-end items-end space-y-8 md:flex md:space-y-0">
-                <li className="text-white">
-                  <Link href="/">
-                    <a className="text-base capitalize text-right">Login</a>
-                  </Link>
-                </li>
-                <li className="text-white">
-                  <Link href="/">
-                    <a className="text-base capitalize  text-right">Signup</a>
-                  </Link>
-                </li>
+                {router.asPath.includes("/admin/") ? (
+                  adminState?.loggedIn ? (
+                    <li className="text-white cursor-pointer">
+                      <Link href="/admin/login">
+                        <a
+                          className="text-base capitalize text-right"
+                          onClick={() => {
+                            dispatchAdmin({ type: "logout" });
+                          }}
+                        >
+                          Logout
+                        </a>
+                      </Link>
+                    </li>
+                  ) : (
+                    <>
+                      <li className="text-white">
+                        <Link href="/admin/login">
+                          <a className="text-base capitalize text-right">
+                            Login
+                          </a>
+                        </Link>
+                      </li>
+                      {/* <li className="text-white">
+                        <Link href="/signup">
+                          <a className="text-base capitalize  text-right">
+                            Signup
+                          </a>
+                        </Link>
+                      </li> */}
+                    </>
+                  )
+                ) : state?.loggedIn ? (
+                  <li className="text-white cursor-pointer">
+                    {/* <Link href="/user"> */}
+                    <a
+                      className="text-base capitalize text-right"
+                      onClick={() => {
+                        dispatch({ type: "logout" });
+                      }}
+                    >
+                      Logout
+                    </a>
+                    {/* </Link> */}
+                  </li>
+                ) : (
+                  <>
+                    <li className="text-white">
+                      <Link href="/user">
+                        <a className="text-base capitalize text-right">Login</a>
+                      </Link>
+                    </li>
+                    <li className="text-white">
+                      <Link href="/signup">
+                        <a className="text-base capitalize  text-right">
+                          Signup
+                        </a>
+                      </Link>
+                    </li>
+                  </>
+                )}
 
                 {/* <li className="text-white">
                   <Link href="/blogs">

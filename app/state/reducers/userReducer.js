@@ -126,6 +126,10 @@ export default function UserReducer(state, action) {
       newState.currentPosts = [];
     }
     return { ...newState, outsideSearch: action.payload };
+  } else if (type == "redirect-dashboard") {
+    return { ...state, redirectToDashboard: true };
+  } else if (type == "redirect-dashboard-false") {
+    return { ...state, redirectToDashboard: false };
   }
 }
 

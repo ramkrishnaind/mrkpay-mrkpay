@@ -122,9 +122,9 @@ function Transactions() {
           Yesterday
         </span>
       </div>
-      <h3>Total Coins Generated:{totalCoinsGenerated}</h3>
-      <h3>Total Coins Redeemed:{totalCoinsRedeem}</h3>
-      <h3>Total Users:{users.length}</h3>
+      <h3 className="py-3 pt-5">Total Coins Generated:{totalCoinsGenerated}</h3>
+      <h3 className="py-3">Total Coins Redeemed:{totalCoinsRedeem}</h3>
+      <h3 className="py-3">Total Users:{users.length}</h3>
       {filteredData.length > 0 ? (
         <table>
           <thead>

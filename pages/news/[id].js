@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import styles from "./style.module.scss";
-import GenerateCoinBtn from "../../components/GenerateCoinBtn/GenerateCoinBtn";
+import GetCoinBtn from "../../components/GetCoinBtn/GetCoinBtn";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -185,14 +185,14 @@ function News() {
         <Head>
           <title>{targetPost.data.title}</title>
         </Head>
+        {status == "1" ? (
+          <div className="mx-auto">
+            <GetCoinBtn />
+          </div>
+        ) : null}
         <div className="flex px-3 md:px-0 md:flex-row flex-col gap-3  bg-[#F2F2F0]">
-          {status == "4" && !collectingCoin ? (
-            <Countdown date={Date.now() + 20000} renderer={renderer} />
-          ) : (
-            ""
-          )}
           {/* <Ad /> */}
-          <div className="w-full md:w-1/4 pt-3  bg-[#F2F2F0]"></div>
+          <div className="w-full md:w-1/5 pt-3  bg-[#F2F2F0]"></div>
           <div className="sm:w-full md:flex-1 md:min-h-[80vh]  bg-white px-2">
             <h3 className="text-4xl py-3 capitalize">
               {targetPost.data.title}
@@ -206,20 +206,19 @@ function News() {
               dangerouslySetInnerHTML={createMarkup()}
             />
           </div>
-          <div className="md:w-1/7 bg-[#F2F2F0]"> advertisement</div>
+          <div className="md:w-1/5 bg-[#F2F2F0]"> advertisement</div>
           {/* <p style={{ textAlign: "center" }}>{targetPost.data.details}</p> */}
           {/* <Ad /> */}
+          <footer id="footer">
+            {/* <Ad1 /> */}
+            {collectingCoin ? (
+              <Countdown date={Date.now() + 5000} renderer={renderer2} />
+            ) : (
+              ""
+            )}
+            {/* <Ad2 /> */}
+          </footer>
         </div>
-
-        <footer id="footer">
-          {/* <Ad1 /> */}
-          {collectingCoin ? (
-            <Countdown date={Date.now() + 5000} renderer={renderer2} />
-          ) : (
-            ""
-          )}
-          {/* <Ad2 /> */}
-        </footer>
       </>
     );
   } else {

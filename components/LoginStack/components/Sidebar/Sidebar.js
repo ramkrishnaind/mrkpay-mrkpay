@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./style.module.scss";
 function Sidebar({ setCurrentScreen }) {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} min-w-[15rem]`}>
       <div className={styles.link} onClick={() => setCurrentScreen("home")}>
         <img src="/assets/home-white.png" />
         <p>Earn Coin</p>

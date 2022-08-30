@@ -10,8 +10,9 @@ import PendingPayments from "./components/PendingPayments/PendingPayments";
 function Dashboard() {
   const [state, dispatch] = useContext(GetAdminContext);
   const [selectedTab, setSelectedTab] = useState("Home");
+  console.log("state?.loggedIn", state?.loggedIn);
   console.log("state", state);
-  if (state.loggedIn) {
+  if (state?.loggedIn) {
     return (
       <div className={styles.container}>
         <nav>

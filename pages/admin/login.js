@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import styles from "../signup/style.module.scss";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { GetAdminContext } from "../../app/state/contexts/adminContext";
 import Link from "next/link";
 const initialData = {
@@ -8,6 +9,7 @@ const initialData = {
   password: "",
 };
 function AdminLogin() {
+  const router = useRouter();
   const [state, dispatch] = useContext(GetAdminContext);
   const [data, setData] = useState(initialData);
   const [errMsg, setErrMsg] = useState(false);
@@ -17,8 +19,10 @@ function AdminLogin() {
     axios
       .post(url, data)
       .then((res) => {
+        debugger;
         if (res.data.status == "success") {
           dispatch({ type: "login" });
+          router.push("/admin/dashboard");
         } else {
           setErrMsg(true);
         }
@@ -31,7 +35,7 @@ function AdminLogin() {
   return (
     <div className={styles.app}>
       <div
-        className={styles.container}
+        className={`${styles.container} md:min-h-[80vh] `}
         onKeyDown={(e) => (e.key == "Enter" ? handleSignIn() : "")}
       >
         <h2>Welcome to MRKPAY Admin Console</h2>
@@ -61,11 +65,11 @@ function AdminLogin() {
         ) : (
           ""
         )}
-        <Link href="/admin/dashboard">
-          <button className={styles.loginBtn} onClick={handleSignIn}>
-            Log in
-          </button>
-        </Link>
+        {/* <Link href="/admin/dashboard"> */}
+        <button className={styles.loginBtn} onClick={handleSignIn}>
+          Log in
+        </button>
+        {/* </Link> */}
       </div>
     </div>
   );

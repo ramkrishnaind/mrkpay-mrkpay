@@ -219,7 +219,7 @@ function Signup({ setState }) {
         <p className={styles.signUpLink}>
           Already have an account? Click{" "}
           <span>
-            <Link href="/">Log In</Link>
+            <Link href="/user">Log In</Link>
           </span>
         </p>
       </div>

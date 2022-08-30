@@ -123,11 +123,11 @@ export default function Home() {
               <News
                 key={index}
                 category={categoryItem}
-                more={state?.categoryPosts[categoryItem]?.length > 6}
+                more={state?.categoryPosts?.[categoryItem]?.length > 6}
                 categoryPosts={
-                  state.categoryPosts[categoryItem] > 6
-                    ? state.categoryPosts[categoryItem].slice(0, 6)
-                    : state.categoryPosts[categoryItem]
+                  state.categoryPosts?.[categoryItem] > 6
+                    ? state.categoryPosts?.[categoryItem].slice(0, 6)
+                    : state.categoryPosts?.[categoryItem]
                 }
               />
             ))}

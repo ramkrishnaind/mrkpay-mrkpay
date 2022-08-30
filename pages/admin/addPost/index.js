@@ -3,6 +3,7 @@ import styles from "./style.module.scss";
 // import classes from "./addPost.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { GetAdminContext } from "../../../app/state/contexts/adminContext";
 import Link from "next/link";
 import TextEditor from "../../../components/utilities/TextEditor";
 import ReactTags from "react-tag-autocomplete";
@@ -15,8 +16,10 @@ const initialState = {
 };
 function AddPost() {
   const [successMsg, setSuccessMsg] = useState(false);
+  const [stateAdmin, dispatchAdmin] = useContext(GetAdminContext);
   const reactTags = React.createRef();
   const [tags, setTags] = useState();
+  // console.log("stateAdmin?.loggedIn", stateAdmin?.loggedIn);
   const router = useRouter();
   const categories = [
     // { id: 3, name: "Bananas" },
@@ -30,6 +33,11 @@ function AddPost() {
   const [categoriesToAdd, setCategoriesToAdd] = useState(
     categories.map((i) => i.name)
   );
+  useEffect(() => {
+    debugger;
+    console.log("stateAdmin?.loggedIn", stateAdmin?.loggedIn);
+    if (!stateAdmin?.loggedIn) router.replace("/admin/login");
+  }, []);
   useEffect(() => {
     const url = process.env.NEXT_PUBLIC_HOST_URL + "/mrkPayPostCategories";
     (async () => {

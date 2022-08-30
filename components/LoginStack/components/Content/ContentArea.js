@@ -9,10 +9,16 @@ function ContentArea({ currentScreen }) {
   const [state, dispatch] = useContext(UserContext);
   return (
     <div className={styles.container}>
-      {currentScreen === "home" && <Home data={state.userData} />}
-      {currentScreen === "noti" && <Notifications />}
-      {currentScreen === "wallet" && <Wallet />}
-      {currentScreen === "settings" && <Settings />}
+      {state.redirectToDashboard ? (
+        <Notifications />
+      ) : (
+        <>
+          {currentScreen === "home" && <Home data={state.userData} />}
+          {currentScreen === "noti" && <Notifications />}
+          {currentScreen === "wallet" && <Wallet />}
+          {currentScreen === "settings" && <Settings />}
+        </>
+      )}
     </div>
   );
 }

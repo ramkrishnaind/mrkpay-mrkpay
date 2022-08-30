@@ -18,7 +18,7 @@ function Wallet() {
             <span>Current Balance</span>
             <p>
               <strong>₹</strong>
-              {parseFloat(data.coinsGenerated / 5).toFixed(2)}
+              {parseFloat((data?.coinsGenerated || 0) / 5).toFixed(2)}
             </p>
           </div>
           <div className={styles.mrkcoins}>

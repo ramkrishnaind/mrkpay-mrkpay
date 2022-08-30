@@ -50,7 +50,7 @@ function Withdraw() {
   }
   if (withdrawing) {
     return (
-      <div style={{ marginTop: "20px" }}>
+      <div style={{ marginTop: "20px" }} className="mx-auto text-lg mb-3">
         <h2>Withdrawing Coins... Please wait...</h2>
       </div>
     );
@@ -75,8 +75,10 @@ function Withdraw() {
           </div>
         ) : (
           <>
-            <h3>You can only withdraw {availableAmount} coins.</h3>
-            <button onClick={startTransaction}>
+            <h3 className="mx-auto text-lg mb-3">
+              You can only withdraw {availableAmount} coins.
+            </h3>
+            <button onClick={startTransaction} className="w-64 mx-auto">
               Redeem {availableAmount} coins
             </button>
           </>
