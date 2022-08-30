@@ -33,7 +33,8 @@ function Post({ data, id, updatePosts }) {
       <div className={styles.right}>
         <div className={styles.head}>
           <p className={styles.title}>{data.title}</p>
-          <span className={styles.author}>{data.author}</span>
+          {data.author && <span className={styles.author}>{data.author}</span>}
+
           <button onClick={deletePost}>
             {confirmDelete ? "Confirm" : "X"}
           </button>
