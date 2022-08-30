@@ -14,25 +14,24 @@ function Notifications() {
     <div className={styles.container}>
       <h2>Redeem Codes</h2>
       <div className={styles.codes}>
-        {/* {codes?.length === 0 ? (
+        {codes?.length === 0 ? (
           <h3>No Redeem Codes</h3>
-        ) :  */}
-        (
-        <React.Fragment>
-          <div className={styles.codeHeader}>
-            <p>Redeem Codes</p>
-            <p>Created At</p>
-          </div>
-          {codes?.map((code, index) => {
-            return (
-              <div key={index} className={styles.code}>
-                <p>{code.code}</p>
-                <p>{code.createdAt}</p>
-              </div>
-            );
-          })}
-        </React.Fragment>
-        {/* )} */}
+        ) : (
+          <React.Fragment>
+            <div className={styles.codeHeader}>
+              <p>Redeem Codes</p>
+              <p>Created At</p>
+            </div>
+            {codes?.map((code, index) => {
+              return (
+                <div key={index} className={styles.code}>
+                  <p>{code.code}</p>
+                  <p>{code.createdAt}</p>
+                </div>
+              );
+            })}
+          </React.Fragment>
+        )}
       </div>
     </div>
   );
