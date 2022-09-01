@@ -17,6 +17,11 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  .w-1000px {
+    width: 1000px;
+  }
+}
 ul {
   list-style: none;
   padding: 0;
