@@ -25,9 +25,9 @@ function News() {
   const router = useRouter();
   const { id } = router.query;
   React.useEffect(() => {
-    // !window.adsbygoogle
-    //   ? (window.adsbygoogle = window.adsbygoogle || []).push({})
-    //   : console.log("Adsbygoogle already exists");
+    !window.adsbygoogle
+      ? (window.adsbygoogle = window.adsbygoogle || []).push({})
+      : console.log("Adsbygoogle already exists");
     const url = process.env.NEXT_PUBLIC_HOST_URL + "/posts";
     (async () => {
       setFetching(true);
@@ -56,9 +56,9 @@ function News() {
     console.log("state", state);
   }, []);
   React.useEffect(() => {
-    // !window.adsbygoogle
-    //   ? (window.adsbygoogle = window.adsbygoogle || []).push({})
-    //   : console.log("Adsbygoogle already exists");
+    !window.adsbygoogle
+      ? (window.adsbygoogle = window.adsbygoogle || []).push({})
+      : console.log("Adsbygoogle already exists");
     setStatus(localStorage.getItem("mozilla-support-status"));
     console.log("state", state);
     // if (state.posts.length > 0) {

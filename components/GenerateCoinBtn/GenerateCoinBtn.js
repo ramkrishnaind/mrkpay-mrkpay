@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./style.module.scss";
 import Countdown from "react-countdown";
 import ReCAPTCHA from "react-google-recaptcha";
+import Ad from "../Ad/Ad";
 import { UserContext } from "./../../app/state/contexts/userContext";
 function GenerateCoinBtn() {
   const recaptchaRef = React.useRef(null);
@@ -99,15 +100,21 @@ function GenerateCoinBtn() {
       ) : (
         <>
           {showCaptcha ? (
-            <ReCAPTCHA
-              sitekey="6LfG4zghAAAAAJdKLRIZPpOyPeL_T9L2VOZBfFDe"
-              onChange={handleRecaptchaChange}
-              ref={recaptchaRef}
-            />
+            <>
+              <ReCAPTCHA
+                sitekey="6LfG4zghAAAAAJdKLRIZPpOyPeL_T9L2VOZBfFDe"
+                onChange={handleRecaptchaChange}
+                ref={recaptchaRef}
+              />
+              <Ad dataAdSlot="1861051743" />
+            </>
           ) : (
-            <button className={styles.btn} onClick={startMining}>
-              💲 Generate Coin 💲
-            </button>
+            <>
+              <button className={styles.btn} onClick={startMining}>
+                💲 Generate Coin 💲
+              </button>
+              <Ad dataAdSlot="2096306726" />
+            </>
           )}
         </>
       )}
