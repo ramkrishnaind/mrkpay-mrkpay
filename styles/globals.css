@@ -21,6 +21,10 @@ a {
   .w-1000px {
     width: 1000px;
   }
+  ,
+  .w-1280px {
+    width: 1280px;
+  }
 }
 ul {
   list-style: none;

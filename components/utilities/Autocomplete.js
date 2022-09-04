@@ -21,7 +21,7 @@ const AutoComplete = (props) => {
     props.onTagsChanged(tags);
   };
   const onAddition = (tag) => {
-    debugger;
+    // debugger;
     const tagFound = tagsState.tags.find(
       (a) => a.name?.toLowerCase().trim() === tag.name?.toLowerCase().trim()
     );

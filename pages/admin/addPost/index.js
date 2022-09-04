@@ -34,7 +34,7 @@ function AddPost() {
     categories.map((i) => i.name)
   );
   useEffect(() => {
-    debugger;
+    // debugger;
     console.log("stateAdmin?.loggedIn", stateAdmin?.loggedIn);
     if (!stateAdmin?.loggedIn) router.replace("/admin/login");
   }, []);

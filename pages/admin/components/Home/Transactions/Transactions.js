@@ -51,7 +51,7 @@ function Transactions() {
     })();
   }, []);
   function handleFilter(type) {
-    debugger;
+    // debugger;
     if (type == "all") {
       setSelected(type);
       setFilteredData([]);

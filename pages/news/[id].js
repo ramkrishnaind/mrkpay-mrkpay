@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import styles from "./style.module.scss";
 import GetCoinBtn from "../../components/GetCoinBtn/GetCoinBtn";
+
 import axios from "axios";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -9,6 +10,11 @@ import { UserContext as AppContext } from "./../../app/state/contexts/userContex
 import { getCookie, setCookie } from "cookies-next";
 import Countdown from "react-countdown";
 import { loadGetInitialProps } from "next/dist/shared/lib/utils";
+import LeftAdvertisement from "../../components/News/LeftAdvertisement";
+import RightAdvertisement from "../../components/News/RIghtAdvertisement";
+import RelatedNPosts from "../../components/News/RIghtAdvertisement/RelatedNPosts";
+import Comments from "../../components/News/Comments";
+
 function News() {
   const [targetPost, setTargetPost] = React.useState();
   const [state, dispatch] = useContext(AppContext);
@@ -48,7 +54,7 @@ function News() {
       });
     })();
     console.log("state", state);
-  }, [id]);
+  }, []);
   React.useEffect(() => {
     // !window.adsbygoogle
     //   ? (window.adsbygoogle = window.adsbygoogle || []).push({})
@@ -66,9 +72,9 @@ function News() {
     //     setFetching(false);
     //   });
     // })();
-    debugger;
+    // debugger;
     setTargetPost(getPost(id));
-  }, [id, state]);
+  }, [id, state.posts]);
 
   function getEquivalentSlug(title) {
     let slug = "";
@@ -86,17 +92,18 @@ function News() {
   }
 
   function getPost(postSlug) {
-    debugger;
+    // debugger;
     const allPosts = state.posts;
     let post = null;
     for (let i = 0; i < allPosts.length; i++) {
-      debugger;
+      // debugger;
       const slug = getEquivalentSlug(allPosts[i].data.title);
       if (slug == postSlug) {
         post = allPosts[i];
         break;
       }
     }
+    if (post) dispatch({ type: "set-current-post", payload: post?.data });
     return post;
   }
   if (isFetching) {
@@ -192,7 +199,9 @@ function News() {
         ) : null}
         <div className="flex px-3 md:px-0 md:flex-row flex-col gap-3  bg-[#F2F2F0]">
           {/* <Ad /> */}
-          <div className="w-full md:w-1/5 pt-3  bg-[#F2F2F0]"></div>
+          <div className="w-full md:w-1/5 pt-3  bg-[#F2F2F0]">
+            <LeftAdvertisement />
+          </div>
           <div className="sm:w-full md:flex-1 md:min-h-[80vh]  bg-white px-2">
             <h3 className="text-4xl py-3 capitalize">
               {targetPost.data.title}
@@ -205,8 +214,13 @@ function News() {
               style={{ textAlign: "justify" }}
               dangerouslySetInnerHTML={createMarkup()}
             />
+            <RelatedNPosts orientation="horizontal" N={3} />
+            <Comments />
           </div>
-          <div className="md:w-1/5 bg-[#F2F2F0]"> advertisement</div>
+          <div className="md:w-1/5 bg-[#F2F2F0]">
+            {" "}
+            <RightAdvertisement />
+          </div>
           {/* <p style={{ textAlign: "center" }}>{targetPost.data.details}</p> */}
           {/* <Ad /> */}
           <footer id="footer">

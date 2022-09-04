@@ -1,0 +1,17 @@
+.btn {
+  border: 1.5px black solid;
+  outline: none;
+  //   width: 100%;
+  display: block;
+  margin-left: auto;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  padding: 5px 12px;
+  border-radius: 5px;
+  transition: 0.2s;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+}

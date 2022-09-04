@@ -14,7 +14,7 @@ function useOutsideSearch(ref, searchRef, searchBoxRef, show, search) {
     /**
      * Alert if clicked on outside of element
      */
-    debugger;
+    // debugger;
     function handleClickOutside(event) {
       if (
         ref.current &&

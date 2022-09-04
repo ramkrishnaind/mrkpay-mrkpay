@@ -50,15 +50,15 @@ export default function UserReducer(state, action) {
   } else if (type == "setposts") {
     return {
       ...state,
-      currentCategory: "",
-      currentPosts: [],
+      // currentCategory: "",
+      // currentPosts: [],
       posts: action.payload,
     };
   } else if (type == "set-category-posts") {
     return {
       ...state,
-      currentCategory: "",
-      currentPosts: [],
+      // currentCategory: "",
+      // currentPosts: [],
       categoryPosts: action.payload,
     };
   } else if (type == "set-categories") {
@@ -76,7 +76,7 @@ export default function UserReducer(state, action) {
     console.log("newState", newState);
     switch (action.payload.trim().toLowerCase()) {
       case "latest news":
-        debugger;
+        // debugger;
         newState.currentCategory = action.payload;
         newState.currentPosts = [...newState.posts];
 
@@ -89,12 +89,12 @@ export default function UserReducer(state, action) {
     newState.more = true;
     return { ...newState };
   } else if (type == "set-currentCategory") {
-    debugger;
+    // debugger;
     const newState = { ...state };
     console.log("newState", newState);
     switch (action.payload.trim().toLowerCase()) {
       case "latest news":
-        debugger;
+        // debugger;
         newState.currentCategory = action.payload;
         newState.currentPosts = [...newState.posts];
         break;
@@ -105,7 +105,7 @@ export default function UserReducer(state, action) {
     }
     return { ...newState };
   } else if (type == "filter") {
-    debugger;
+    // debugger;
     const newState = { ...state };
     console.log("newState", newState);
     newState.currentCategory = "Filtered Posts";
@@ -130,6 +130,17 @@ export default function UserReducer(state, action) {
     return { ...state, redirectToDashboard: true };
   } else if (type == "redirect-dashboard-false") {
     return { ...state, redirectToDashboard: false };
+  } else if (type == "set-current-post") {
+    debugger;
+    const newState = { ...state };
+    newState.currentPosts = [
+      ...newState.posts.filter(
+        (item) =>
+          item.data.title.toLowerCase().trim() ===
+          action.payload.title.trim().toLowerCase()
+      ),
+    ];
+    return { ...newState };
   }
 }
 

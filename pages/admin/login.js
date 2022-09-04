@@ -19,7 +19,7 @@ function AdminLogin() {
     axios
       .post(url, data)
       .then((res) => {
-        debugger;
+        // debugger;
         if (res.data.status == "success") {
           dispatch({ type: "login" });
           router.push("/admin/dashboard");

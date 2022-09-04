@@ -156,7 +156,7 @@ function MyApp({ Component, pageProps }) {
             minHeight: "100vh",
             // flex: 1,
           }}
-          className="w-full md:w-5/6"
+          className="w-full  md:w-1280px"
         >
           <Header width={80} />
           <div
