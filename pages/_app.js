@@ -89,7 +89,7 @@ function MyApp({ Component, pageProps }) {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2397723075092719"
           crossorigin="anonymous"
         /> */}
-        <div className="w-full hidden md:block md:flex-1">Ad will be shown</div>
+        <div className="w-full hidden md:block md:flex-1"></div>
         <div
           style={{
             display: "flex",
@@ -121,7 +121,7 @@ function MyApp({ Component, pageProps }) {
             <Footer />
           </div>
         </div>
-        <div className="w-full hidden md:block md:flex-1">Ad will be shown</div>
+        <div className="w-full hidden md:block md:flex-1"></div>
       </div>
     </>
   );

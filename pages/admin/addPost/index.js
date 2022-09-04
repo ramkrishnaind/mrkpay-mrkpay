@@ -128,7 +128,7 @@ function AddPost() {
           // setTimeout(() => {
           //   setCategoriesFetched(null);
           // }, 4000);
-          router.push("/");
+          // router.push("/");
         }
       });
     }
