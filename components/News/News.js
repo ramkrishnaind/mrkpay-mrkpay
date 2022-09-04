@@ -46,7 +46,7 @@ function News({ category, categoryPosts, more }) {
           {categoryPosts?.length == 0 ? (
             <h1>Fetcing Posts</h1>
           ) : (
-            categoryPosts?.map((obj, index) => {
+            categoryPosts?.slice(0, 6)?.map((obj, index) => {
               return (
                 // <div>This is some text</div>
                 <NewsHighlight
