@@ -24,13 +24,10 @@ function MyApp({ Component, pageProps }) {
       >
         <Script
           id="Adsense-id"
-          async
-          onError={(e) => {
-            console.error("Script failed to load", e);
-          }}
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2397723075092719"
-          crossorigin="anonymous"
+          data-ad-client="2397723075092719"
+          async="true"
+          strategy="beforeInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
         />
 
         <div
