@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./style.module.scss";
 import Countdown from "react-countdown";
 import ReCAPTCHA from "react-google-recaptcha";
+import Script from "next/script";
 import Ad from "../Ad/Ad";
 import { UserContext } from "./../../app/state/contexts/userContext";
 function GenerateCoinBtn() {
@@ -101,6 +102,19 @@ function GenerateCoinBtn() {
         <>
           {showCaptcha ? (
             <>
+              <Script
+                id="google-analytics"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                    document.write(
+                      '<script src="//banner.incrementxserv.com/scripts/pageads.js?vzId=PNXX877000VGGCF27&vzR=' +
+                        Math.floor(Math.random() * 100(new Date().getTime() / 1000)) +
+                        '"></script>'
+                    );
+                  `,
+                }}
+              />
               <ReCAPTCHA
                 sitekey="6LfG4zghAAAAAJdKLRIZPpOyPeL_T9L2VOZBfFDe"
                 onChange={handleRecaptchaChange}
@@ -113,7 +127,6 @@ function GenerateCoinBtn() {
               <button className={styles.btn} onClick={startMining}>
                 💲 Generate Coin 💲
               </button>
-              <Ad dataAdSlot="2096306726" />
             </>
           )}
         </>

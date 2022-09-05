@@ -28,9 +28,9 @@ export default function Home() {
     }, 10);
   }, [state?.currentCategory]);
   React.useEffect(() => {
-    !window.adsbygoogle
-      ? (window.adsbygoogle = window.adsbygoogle || []).push({})
-      : console.log("Adsbygoogle already exists");
+    // !window.adsbygoogle
+    //   ? (window.adsbygoogle = window.adsbygoogle || []).push({})
+    //   : console.log("Adsbygoogle already exists");
     const url = process.env.NEXT_PUBLIC_HOST_URL + "/posts";
     (async () => {
       setFetching(true);
@@ -80,7 +80,7 @@ export default function Home() {
           />
         </div>
 
-        {/* <Ad /> */}
+        <Ad />
 
         {/* <DynamicTimer /> */}
         {/* <div style={{ flex: 1 }}>afjafjl</div> */}

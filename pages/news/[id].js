@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import styles from "./style.module.scss";
 import GetCoinBtn from "../../components/GetCoinBtn/GetCoinBtn";
-
+import Ad from "../../components/Ad/Ad";
+// import Ad from "../../components/Footer/";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -14,6 +15,7 @@ import LeftAdvertisement from "../../components/News/LeftAdvertisement";
 import RightAdvertisement from "../../components/News/RIghtAdvertisement";
 import RelatedNPosts from "../../components/News/RIghtAdvertisement/RelatedNPosts";
 import Comments from "../../components/News/Comments";
+import { signInWithPhoneNumber } from "firebase/auth";
 
 function News() {
   const [targetPost, setTargetPost] = React.useState();
@@ -25,9 +27,9 @@ function News() {
   const router = useRouter();
   const { id } = router.query;
   React.useEffect(() => {
-    !window.adsbygoogle
-      ? (window.adsbygoogle = window.adsbygoogle || []).push({})
-      : console.log("Adsbygoogle already exists");
+    // !window.adsbygoogle
+    //   ? (window.adsbygoogle = window.adsbygoogle || []).push({})
+    //   : console.log("Adsbygoogle already exists");
     const url = process.env.NEXT_PUBLIC_HOST_URL + "/posts";
     (async () => {
       setFetching(true);
@@ -56,9 +58,9 @@ function News() {
     console.log("state", state);
   }, []);
   React.useEffect(() => {
-    !window.adsbygoogle
-      ? (window.adsbygoogle = window.adsbygoogle || []).push({})
-      : console.log("Adsbygoogle already exists");
+    // !window.adsbygoogle
+    //   ? (window.adsbygoogle = window.adsbygoogle || []).push({})
+    //   : console.log("Adsbygoogle already exists");
     setStatus(localStorage.getItem("mozilla-support-status"));
     console.log("state", state);
     // if (state.posts.length > 0) {
@@ -199,10 +201,10 @@ function News() {
         ) : null}
         <div className="flex px-3 md:px-0 md:flex-row flex-col gap-3  bg-[#F2F2F0]">
           {/* <Ad /> */}
-          <div className="w-full md:w-1/5 pt-3  bg-[#F2F2F0]">
+          <div className="order-2 md:order-1 w-full md:w-1/5 pt-3  bg-[#F2F2F0]">
             <LeftAdvertisement />
           </div>
-          <div className="sm:w-full md:flex-1 md:min-h-[80vh]  bg-white px-2">
+          <div className="order-1 md:order-2  sm:w-full md:flex-1 md:min-h-[80vh]  bg-white px-2">
             <h3 className="text-4xl py-3 capitalize">
               {targetPost.data.title}
             </h3>
@@ -217,8 +219,7 @@ function News() {
             <RelatedNPosts orientation="horizontal" N={3} />
             <Comments />
           </div>
-          <div className="md:w-1/5 bg-[#F2F2F0]">
-            {" "}
+          <div className="order-3 md:order-3  md:w-1/5 bg-[#F2F2F0]">
             <RightAdvertisement />
           </div>
           {/* <p style={{ textAlign: "center" }}>{targetPost.data.details}</p> */}

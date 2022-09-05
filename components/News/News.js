@@ -42,7 +42,7 @@ function News({ category, categoryPosts, more }) {
             </h3>
           )}
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 pl-1">
+        <div className="grid grid-cols-1 md:grid-cols-3 pl-1">
           {categoryPosts?.length == 0 ? (
             <h1>Fetcing Posts</h1>
           ) : (

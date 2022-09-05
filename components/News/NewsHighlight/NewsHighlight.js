@@ -42,7 +42,7 @@ function NewsHighlight({ data, id }) {
             <img
               src={data.imgUrl}
               alt="post-img"
-              className="w-80 md:h-24 h-12 object-cover rounded-md"
+              className="w-80 md:h-24 h-20 object-cover rounded-md"
             />
           </div>
 
