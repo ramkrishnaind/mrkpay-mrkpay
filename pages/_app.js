@@ -82,7 +82,7 @@ function MyApp({ Component, pageProps }) {
         }}
         className="flex-col md:flex-row "
       >
-        {/* <Script
+        <Script
           id="Adsense-id"
           async
           onError={(e) => {
@@ -91,7 +91,7 @@ function MyApp({ Component, pageProps }) {
           strategy="afterInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2397723075092719"
           crossorigin="anonymous"
-        /> */}
+        />
         <div className="w-full hidden md:block md:flex-1"></div>
         <div
           style={{
@@ -138,7 +138,7 @@ function MyApp({ Component, pageProps }) {
           backgroundColor: "#F2F2F0",
         }}
       >
-        {/* <Script
+        <Script
           id="Adsense-id"
           async
           onError={(e) => {
@@ -147,7 +147,7 @@ function MyApp({ Component, pageProps }) {
           strategy="afterInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2397723075092719"
           crossorigin="anonymous"
-        /> */}
+        />
 
         <div
           style={{
