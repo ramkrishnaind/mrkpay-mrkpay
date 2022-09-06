@@ -30,3 +30,8 @@
   color: rgb(25, 76, 92);
   font-weight: bold;
 }
+@media (min-width: 576px) {
+  .ql-editor {
+    max-width: 665px;
+  }
+}
