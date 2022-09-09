@@ -4,6 +4,7 @@ import axios from "axios";
 function Post({ data, id, updatePosts }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
   function deletePost() {
+    debugger;
     if (confirmDelete) {
       const url = process.env.NEXT_PUBLIC_HOST_URL + `/posts`;
       axios.delete(url, { data: { id } }).then((res) => {
@@ -14,6 +15,25 @@ function Post({ data, id, updatePosts }) {
     } else {
       setConfirmDelete(true);
     }
+  }
+  function createMarkup(length = 30) {
+    console.log("data.details", data.details);
+    const p = document.createElement("p");
+    p.innerHTML = data?.details || "";
+    // p.classList.add("hover:underline");
+    const arr = p.innerText.split(" ");
+    const count = Math.floor(arr.length < length ? arr.length : length);
+    const arrToTake = arr.map((item, index) => {
+      if (index <= count) return item;
+    });
+    let result = arrToTake.join(" ") + (arr.length > length ? "..." : "");
+    if (result.length > 80) {
+      result = result.substring(0, 80) + " ...";
+    }
+    // return result;
+    return {
+      __html: data.details,
+    };
   }
   if (!data) {
     return <></>;
@@ -34,12 +54,27 @@ function Post({ data, id, updatePosts }) {
         <div className={styles.head}>
           <p className={styles.title}>{data.title}</p>
           {data.author && <span className={styles.author}>{data.author}</span>}
-
-          <button onClick={deletePost}>
-            {confirmDelete ? "Confirm" : "X"}
-          </button>
+          <div className="relative p-3">
+            <button
+              onClick={deletePost}
+              className={`${
+                confirmDelete ? styles["button-confirm"] : styles.button
+              }`}
+            >
+              {confirmDelete ? "Confirm" : "X"}
+            </button>
+            {confirmDelete && (
+              <button
+                onClick={() => setConfirmDelete(!confirmDelete)}
+                className={`absolute right-0 top-0 ${styles["button-cancel"]} bg-pink-200`}
+              >
+                X
+              </button>
+            )}
+          </div>
         </div>
-        <p className={styles.body}>{data.details}</p>
+        <p dangerouslySetInnerHTML={createMarkup()} />
+        {/* <p className={styles.body}>{data.details}</p> */}
       </div>
     </div>
   );

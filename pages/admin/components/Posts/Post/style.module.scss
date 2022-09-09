@@ -35,12 +35,25 @@
     background-color: lightgray;
     margin: 0 20px;
   }
-  button {
+  .button {
     background-color: red;
     width: 40px;
     height: 40px;
     color: white;
     border-radius: 20px;
+  }
+  .button-cancel {
+    width: 40px;
+    height: 40px;
+    color: white;
+    border-radius: 20px;
+  }
+  .button-confirm {
+    background-color: red;
+    width: 100px;
+    height: 40px;
+    color: white;
+    border-radius: 10px;
   }
 }
 .body {
