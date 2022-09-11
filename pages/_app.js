@@ -12,12 +12,12 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   // console.log("router", router);
   // React.useEffect(() => {}, []);
-  React.useEffect(() => {
-    debugger;
-    !window.adsbygoogle
-      ? (window.adsbygoogle = window.adsbygoogle || []).push({})
-      : console.log("Adsbygoogle already exists");
-  }, []);
+  // React.useEffect(() => {
+  //   debugger;
+  //   !window.adsbygoogle
+  //     ? (window.adsbygoogle = window.adsbygoogle || []).push({})
+  //     : console.log("Adsbygoogle already exists");
+  // }, []);
   const user = (
     <>
       <div
@@ -82,7 +82,7 @@ function MyApp({ Component, pageProps }) {
         }}
         className="flex-col md:flex-row "
       >
-        <Script
+        {/* <Script
           id="Adsense-id"
           async
           onError={(e) => {
@@ -91,7 +91,7 @@ function MyApp({ Component, pageProps }) {
           strategy="afterInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2397723075092719"
           crossorigin="anonymous"
-        />
+        /> */}
         <div className="w-full hidden md:block md:flex-1"></div>
         <div
           style={{
@@ -138,17 +138,6 @@ function MyApp({ Component, pageProps }) {
           backgroundColor: "#F2F2F0",
         }}
       >
-        <Script
-          id="Adsense-id"
-          async
-          onError={(e) => {
-            console.error("Script failed to load", e);
-          }}
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2397723075092719"
-          crossorigin="anonymous"
-        />
-
         <div
           style={{
             display: "flex",
@@ -184,6 +173,18 @@ function MyApp({ Component, pageProps }) {
   );
   return (
     <AdminContextContainer>
+      <Script
+        id="Adsense-id"
+        async
+        data-ad-client="ca-pub-2397723075092719"
+        onError={(e) => {
+          console.error("Script failed to load", e);
+        }}
+        strategy="afterInteractive"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2397723075092719"
+        crossorigin="anonymous"
+      />
+
       <UserContextContainer>
         {router.asPath.includes("/news/")
           ? news

@@ -120,7 +120,7 @@ function GenerateCoinBtn() {
                 onChange={handleRecaptchaChange}
                 ref={recaptchaRef}
               />
-              <Ad dataAdSlot="1861051743" />
+              <Ad currentPath="captcha footer ad" dataAdSlot="1861051743" />
             </>
           ) : (
             <>
