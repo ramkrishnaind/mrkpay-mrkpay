@@ -173,7 +173,7 @@ function MyApp({ Component, pageProps }) {
   );
   return (
     <AdminContextContainer>
-      <Script
+      {/* <Script
         id="Adsense-id"
         async
         data-ad-client="ca-pub-2397723075092719"
@@ -183,7 +183,7 @@ function MyApp({ Component, pageProps }) {
         strategy="afterInteractive"
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2397723075092719"
         crossorigin="anonymous"
-      />
+      /> */}
 
       <UserContextContainer>
         {router.asPath.includes("/news/")
