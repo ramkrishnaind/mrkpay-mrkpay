@@ -4,8 +4,10 @@ import styles from "./style.module.scss";
 import TopNewsHightlight from "./TopNewsHighlight/TopNewsHightlight";
 import NewsHighlight from "./NewsHighlight/NewsHighlight";
 import axios from "axios";
+import getWindowDimensions from "../../hooks/useWindowDimensions";
 import { UserContext as AppContext } from "../../app/state/contexts/userContext";
 function News({ category, categoryPosts, more }) {
+  const { height, width: widthScreen } = getWindowDimensions();
   console.log("categoryPosts", categoryPosts);
   // console.log(state);
   // useEffect(() => {
@@ -46,16 +48,18 @@ function News({ category, categoryPosts, more }) {
           {categoryPosts?.length == 0 ? (
             <h1>Fetcing Posts</h1>
           ) : (
-            categoryPosts?.slice(0, 6)?.map((obj, index) => {
-              return (
-                // <div>This is some text</div>
-                <NewsHighlight
-                  key={obj.id || index}
-                  data={obj.data ? obj.data : obj}
-                  id={obj.id || index}
-                />
-              );
-            })
+            categoryPosts
+              ?.slice(0, widthScreen < 768 ? 3 : 6)
+              ?.map((obj, index) => {
+                return (
+                  // <div>This is some text</div>
+                  <NewsHighlight
+                    key={obj.id || index}
+                    data={obj.data ? obj.data : obj}
+                    id={obj.id || index}
+                  />
+                );
+              })
           )}
         </div>
       </div>
