@@ -76,7 +76,7 @@ function News() {
     // })();
     // debugger;
     setTargetPost(getPost(id));
-  }, [id, state.posts]);
+  }, [id, state?.posts]);
 
   function getEquivalentSlug(title) {
     let slug = "";
@@ -95,7 +95,7 @@ function News() {
 
   function getPost(postSlug) {
     // debugger;
-    const allPosts = state.posts;
+    const allPosts = state?.posts;
     let post = null;
     for (let i = 0; i < allPosts.length; i++) {
       // debugger;

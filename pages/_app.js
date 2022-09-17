@@ -58,12 +58,13 @@ function MyApp({ Component, pageProps }) {
               // margin: "auto",
               // minWidth: "100%",
               // minHeight: "100vh",
-              margin: "0 80px",
+              // margin: "0 80px",
               // position: "relative",
 
               flex: 1,
             }}
             // className="md:top-[5rem] top-[4rem]"
+            className="w-full"
           >
             <Component {...pageProps} />
             <Footer />

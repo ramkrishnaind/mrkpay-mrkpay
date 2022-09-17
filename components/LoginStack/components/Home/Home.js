@@ -1,14 +1,18 @@
-import React, { useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import styles from "./style.module.scss";
 import Link from "next/link";
 import { UserContext } from "../../../../app/state/contexts/userContext";
 import { getCookie, deleteCookie } from "cookies-next";
+import { useRouter } from "next/router";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { app, db } from "./../../../../app/firebase/config";
+import axios from "axios";
 const date = new Date();
 function Home({ data }) {
   const [state, dispatch] = useContext(UserContext);
-  const [path, setPath] = React.useState("/");
+  debugger;
+  const router = useRouter();
+  const [path, setPath] = React.useState("");
   const result = date.toUTCString().split(" ");
   const currentDate =
     result[0] + " " + result[1] + " " + result[2] + " " + result[3];
@@ -26,14 +30,20 @@ function Home({ data }) {
   }
   useEffect(() => {
     localStorage.setItem("mozilla-support-status", "na");
-    getRandomPost();
+    // getRandomPost();
     const tokenGenerated = getCookie("token");
     if (tokenGenerated == "0x0000000000000000000000000000000000000000") {
       //increment coin here...
       deleteCookie("token");
-      // addGeneratedCoin(localStorage.getItem("uad-cache"));
+      addGeneratedCoin(localStorage.getItem("uad-cache"));
     }
   }, []);
+  const clickHandler = (e) => {
+    e.preventDefault();
+    // const res = getRandomPost();
+    debugger;
+    if (path) router.replace(path);
+  };
   function createSlug(title) {
     let slug = "";
     let oldTitle = title;
@@ -46,19 +56,39 @@ function Home({ data }) {
     }
     return slug;
   }
-  function getRandomPost() {
-    if (state.posts.length == 0) {
-      dispatch({ type: "loadPosts" });
+  debugger;
+  useEffect(() => {
+    debugger;
+    if (state.posts.length === 0) {
+      const url = process.env.NEXT_PUBLIC_HOST_URL + "/posts";
+      (async () => {
+        // setFetching(true);
+        axios.get(url).then((res) => {
+          dispatch({ type: "setposts", payload: res.data.data });
+          // setFetching(false);
+        });
+      })();
+    } else {
+      getRandomPost(state.posts);
     }
-    const allPosts = state.posts;
+  }, [state.posts]);
+  const getRandomPost = (posts) => {
+    debugger;
+    // if (state.posts.length == 0) {
+    //   // dispatch({ type: "loadPosts" });
+
+    // }
+    debugger;
+    const allPosts = [...posts];
     const slugs = allPosts.map((obj) => createSlug(obj.data.title));
     const randomId = slugs[Math.floor(Math.random() * slugs.length)];
     const status = localStorage.getItem("mozilla-support-status");
     if (status == "na") {
       localStorage.setItem("mozilla-support-status", "1");
       setPath("/news/" + randomId);
+      // return "/news/" + randomId;
     }
-  }
+  };
   return (
     <div className={styles.container}>
       <h2 className="text-lg text-center  my-5">Welcome, {data.name} 😎</h2>
@@ -72,9 +102,11 @@ function Home({ data }) {
       </div>
       <div className={styles.btnContainer}>
         {/* <h3>You can start earning now 💵</h3> */}
-        <Link href={path}>
-          <button className={styles.btn}>Start Earning Coin</button>
-        </Link>
+        {/* <Link href={path}> */}
+        <button className={styles.btn} onClick={clickHandler}>
+          Start Earning Coin
+        </button>
+        {/* </Link> */}
       </div>
     </div>
   );
