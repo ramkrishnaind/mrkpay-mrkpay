@@ -10,7 +10,7 @@ import axios from "axios";
 const date = new Date();
 function Home({ data }) {
   const [state, dispatch] = useContext(UserContext);
-  debugger;
+
   const router = useRouter();
   const [path, setPath] = React.useState("");
   const result = date.toUTCString().split(" ");
@@ -18,12 +18,14 @@ function Home({ data }) {
     result[0] + " " + result[1] + " " + result[2] + " " + result[3];
   async function addGeneratedCoin(cache) {
     let targetObj;
+    console.log("s");
+    debugger;
     const docRef = doc(db, "users", cache);
     const obj = await getDoc(docRef);
     targetObj = obj.data();
     if (targetObj) {
-      targetObj.coinsGenerated += 1;
-      await setDoc(docRef, targetObj);
+      // targetObj.coinsGenerated += 1;
+      // await setDoc(docRef, targetObj);
       dispatch({ type: "update_user_data", payload: targetObj });
       console.log(targetObj);
     }
@@ -32,16 +34,17 @@ function Home({ data }) {
     localStorage.setItem("mozilla-support-status", "na");
     // getRandomPost();
     const tokenGenerated = getCookie("token");
+    debugger;
     if (tokenGenerated == "0x0000000000000000000000000000000000000000") {
       //increment coin here...
       deleteCookie("token");
-      addGeneratedCoin(localStorage.getItem("uad-cache"));
     }
+    addGeneratedCoin(localStorage.getItem("uad-cache"));
   }, []);
   const clickHandler = (e) => {
     e.preventDefault();
     // const res = getRandomPost();
-    debugger;
+    // debugger;
     if (path) router.replace(path);
   };
   function createSlug(title) {
@@ -56,9 +59,9 @@ function Home({ data }) {
     }
     return slug;
   }
-  debugger;
+  // debugger;
   useEffect(() => {
-    debugger;
+    // debugger;
     if (state.posts.length === 0) {
       const url = process.env.NEXT_PUBLIC_HOST_URL + "/posts";
       (async () => {
@@ -73,12 +76,12 @@ function Home({ data }) {
     }
   }, [state.posts]);
   const getRandomPost = (posts) => {
-    debugger;
+    // debugger;
     // if (state.posts.length == 0) {
     //   // dispatch({ type: "loadPosts" });
 
     // }
-    debugger;
+    // debugger;
     const allPosts = [...posts];
     const slugs = allPosts.map((obj) => createSlug(obj.data.title));
     const randomId = slugs[Math.floor(Math.random() * slugs.length)];

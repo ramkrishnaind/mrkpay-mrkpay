@@ -128,7 +128,7 @@ function News() {
   const Completionist = () => (
     <a
       href="#footer"
-      onClick={handleClickCollectCoin}
+      // onClick={handleClickCollectCoin}
       className={styles.collectCoinBtn}
     >
       Collect Coin

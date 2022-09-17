@@ -48,7 +48,7 @@ export default function UserReducer(state, action) {
   } else if (type == "firstvisit") {
     return { ...state, firstVisit: false };
   } else if (type == "setposts") {
-    debugger;
+    // debugger;
     return {
       ...state,
       // currentCategory: "",
