@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./style.module.scss";
 import Link from "next/link";
 import { doc, getDoc } from "firebase/firestore";
@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 
 function LoginScreen() {
+  const [loggedIn, setLoggedIn] = useState(undefined);
   // States to Handle LoginScreen State
   const [data, setData] = React.useState({ email: "", password: "" });
   const [errMsg, setErrMsg] = React.useState("");
@@ -26,6 +27,9 @@ function LoginScreen() {
     }
     return ch;
   }
+  useEffect(() => {
+    setLoggedIn(state.loggedIn);
+  }, [state.loggedIn]);
   // Fetching user token
   useEffect(() => {
     (async function () {
@@ -122,6 +126,9 @@ function LoginScreen() {
         // The AuthCredential type that was used.
         const credential = FacebookAuthProvider.credentialFromError(error);
       });
+  }
+  if (loggedIn == undefined) {
+    return <></>;
   }
   return (
     <div className={styles.container}>

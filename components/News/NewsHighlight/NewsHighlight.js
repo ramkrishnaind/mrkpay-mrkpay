@@ -41,7 +41,7 @@ function NewsHighlight({ data, id }) {
         <div className="flex gap-3">
           <div className="w-2/5 px-1 md:px-0 md:pr-3 pt-1">
             <img
-              src={data.imageUrl}
+              src={data.imageUrl || data.imgUrl}
               alt="post-img"
               className="w-80 md:h-24 h-20 object-cover rounded-md"
             />

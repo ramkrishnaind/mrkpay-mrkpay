@@ -7,8 +7,28 @@ import LoginStack from "./../../components/LoginStack/LoginStack";
 import LogoutStack from "./../../components/LogoutStack/LogoutStack";
 import { UserContext } from "./../../app/state/contexts/userContext";
 import { getCookie, setCookie } from "cookies-next";
+import { doc, getDoc } from "firebase/firestore";
+import { app, db } from "../../app/firebase/config";
+
 export default function Home() {
   const [state, dispatch] = useContext(UserContext);
+  const [loggedIn, setLoggedIn] = useState(undefined);
+  useEffect(() => {
+    (async function () {
+      const hash = localStorage.getItem("uad-cache");
+      if (hash) {
+        const uid = hash;
+        const docRef = doc(db, "users", uid);
+        console.log("Fetching data using id...");
+        const val = await getDoc(docRef);
+        console.log("Fetching data using id...Complete");
+        dispatch({ type: "update_user_data", payload: val.data() });
+      }
+    })();
+  }, []);
+  useEffect(() => {
+    setLoggedIn(state.loggedIn);
+  }, [state.loggedIn]);
   const [id, setId] = useState("");
   useEffect(() => {
     setId(localStorage.getItem("uad-cache"));
@@ -21,7 +41,8 @@ export default function Home() {
     }
     console.log("State in user index:", state);
   }, []);
-  if (state == undefined) {
+  debugger;
+  if (loggedIn == undefined) {
     return <></>;
   }
   return (
@@ -34,11 +55,7 @@ export default function Home() {
 
       <main className={styles.container}>
         <div className={styles.app}>
-          {!state.loggedIn ? (
-            <LogoutStack setUserData={dispatch} />
-          ) : (
-            <LoginStack />
-          )}
+          {!loggedIn ? <LogoutStack setUserData={dispatch} /> : <LoginStack />}
         </div>
       </main>
     </div>

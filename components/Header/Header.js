@@ -157,9 +157,11 @@ export default function Home({ width, marginX }) {
                         }}
                       />
                     </Link>
-                    <div className="text-xs md:hidden rounded-lg py-1 align-middle flex bg-red-500 w-15 px-2 text-orange-200">
-                      Earn Coin
-                    </div>
+                    <Link href="/user">
+                      <div className="text-xs md:hidden rounded-lg py-1 align-middle flex bg-red-500 w-15 px-2 text-orange-200">
+                        Earn Coin
+                      </div>
+                    </Link>
                   </>
                 )}
               </div>

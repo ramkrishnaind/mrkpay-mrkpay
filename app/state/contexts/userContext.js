@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 import userReducer from "../reducers/userReducer";
 
 const initialState = {
-  loggedIn: false,
+  loggedIn: undefined,
   userData: null,
   posts: [],
   firstVisit: false,
