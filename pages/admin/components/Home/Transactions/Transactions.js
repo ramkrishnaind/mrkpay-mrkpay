@@ -15,8 +15,30 @@ function Transactions() {
   useEffect(() => {
     (async function () {
       console.log("Fetching transactions...");
+      debugger;
       const collectionRef = collection(db, "transactions");
       const snapShots = await getDocs(collectionRef);
+      const coinTransactionCollectionRef = collection(db, "coinTransaction");
+      const snapShotsCoinTransaction = await getDocs(
+        coinTransactionCollectionRef
+      );
+      const coinTr = [];
+      const readableCoinTr = snapShotsCoinTransaction.docs.map(async (obj) => {
+        const found = coinTr.find(
+          (i) => i.date == obj.data().createdAt?.slice(0, 10)
+        );
+        if (found) {
+          found.coinGenerated += !isNaN(obj.data().coinGenerated)
+            ? obj.data().coinGenerated
+            : 0;
+        } else {
+          debugger;
+
+          const date = obj.data().createdAt.slice(0, 10);
+          const coinGenerated = obj.data().coinGenerated;
+          coinTr.push({ date, coinGenerated, coinRedeemed: 0 });
+        }
+      });
       let totalTemp = 0,
         totalRedeemed = 0;
       const objToSet = [];
@@ -30,20 +52,23 @@ function Transactions() {
         const found = objToSet.find((i) => i.date == date);
         if (!users.includes(obj.data().createdBy))
           users.push(obj.data().createdBy);
+        const foundTr = coinTr.find((i) => i.date == obj.id.slice(0, 10));
         if (!found) {
           objToSet.push({
             date,
             data: obj.data(),
-            coinsGenerated: obj.data().coinsAmount,
-            coinsRedeemed: objUser.data().coinsRedeemed,
+            coinsGenerated: foundTr ? foundTr.coinGenerated : 0,
+            coinsRedeemed: obj.data().coinsAmount,
             dateObj: new Date(date),
           });
         } else {
-          found.coinsGenerated += !isNaN(obj.data().coinsAmount)
-            ? obj.data().coinsAmount
+          found.coinsGenerated += foundTr
+            ? !isNaN(foundTr.coinGenerated)
+              ? foundTr.coinGenerated
+              : 0
             : 0;
-          found.coinsRedeemed += !isNaN(objUser.data().coinsRedeemed)
-            ? objUser.data().coinsRedeemed
+          found.coinsRedeemed += !isNaN(obj.data().coinsAmount)
+            ? obj.data().coinsAmount
             : 0;
           found.amount += obj.data().amount;
         }
@@ -51,9 +76,22 @@ function Transactions() {
         console.log("obj.data()", obj.data());
         return { date, data: obj.data() };
       });
+      // const dates = objToSet.map((t) => t.date);
+      // const additionalTranscations = coinTr
+      //   .filter((it) => !dates.includes(it.date))
+      //   .map((i) => ({
+      //     date: i.date,
+      //     coinsGenerated: i.coinGenerated,
+      //     coinsRedeemed: i.coinRedeemed,
+      //     data: { amount: 0 },
+      //   }));
+      debugger;
+      debugger;
+      // const objTotal = [...objToSet, additionalTranscations];
+      // objTotal.sort(compareFunc);
+      // setTransactions(objTotal);
       objToSet.sort(compareFunc);
       setTransactions(objToSet);
-
       setTotalCoinsRedeem(totalRedeemed);
       setUsers(users);
 
@@ -183,7 +221,7 @@ function Transactions() {
                 <td>{tr.date}</td>
                 <td>{tr.coinsGenerated}</td>
                 <td>{tr.coinsRedeemed}</td>
-                <td>{tr.data.amount}</td>
+                <td>{tr.data?.amount}</td>
               </tr>
             );
           })}

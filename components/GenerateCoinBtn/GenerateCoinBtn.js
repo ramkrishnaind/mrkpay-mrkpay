@@ -102,7 +102,7 @@ function GenerateCoinBtn() {
         <>
           {showCaptcha ? (
             <>
-              <Script
+              {/* <Script
                 id="google-analytics"
                 strategy="afterInteractive"
                 dangerouslySetInnerHTML={{
@@ -114,7 +114,7 @@ function GenerateCoinBtn() {
                     );
                   `,
                 }}
-              />
+              /> */}
               <ReCAPTCHA
                 sitekey="6LfG4zghAAAAAJdKLRIZPpOyPeL_T9L2VOZBfFDe"
                 onChange={handleRecaptchaChange}

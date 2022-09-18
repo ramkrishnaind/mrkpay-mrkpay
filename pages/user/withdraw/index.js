@@ -67,10 +67,16 @@ function Withdraw() {
       <div className={styles.container}>
         {withDrawSucceed ? (
           <div>
-            <h2>You have successfully withdrawn {availableAmount} coins</h2>
-            <h1>Redeem Codes</h1>
+            <h2 className="w-100 text-center mx-auto text-lg mb-3">
+              You have successfully withdrawn {availableAmount} coins
+            </h2>
+            <h1 className="w-64 mx-auto">Redeem Codes</h1>
             {codes.map((code, index) => {
-              return <p key={index}>{code.code}</p>;
+              return (
+                <p key={index} className="w-100 text-center ">
+                  {code.code}
+                </p>
+              );
             })}
           </div>
         ) : (
