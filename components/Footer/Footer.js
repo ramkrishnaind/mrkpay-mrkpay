@@ -21,7 +21,7 @@ function Footer() {
         </Link>
       </div>
       <p className="text-[.8rem] md:text-base">
-        Copyright &copy; 2022 | FOREVERS.IN | All Rights Are Reserved
+        Copyright &copy; 2022 | MRKPAY.COM | All Rights Are Reserved
       </p>
     </div>
   );
