@@ -4,18 +4,23 @@ import { db } from "./../../../../../app/firebase/config";
 import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 function Transactions() {
   const [transactions, setTransactions] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(0);
   const [totalCoinsRedeem, setTotalCoinsRedeem] = useState(0);
   const [totalCoinsGenerated, setTotalCoinsGenerated] = useState(0);
   const [filteredData, setFilteredData] = useState([]);
   const [selected, setSelected] = useState("all");
   const compareFunc = (a, b) => {
-    return b.dateObj - a.dateObj;
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
   };
   useEffect(() => {
     (async function () {
       console.log("Fetching transactions...");
       debugger;
+
+      const users = [];
+      const snapshot = await getDocs(collection(db, "users"));
+      debugger;
+      setUsers(snapshot.docs.length);
       const collectionRef = collection(db, "transactions");
       const snapShots = await getDocs(collectionRef);
       const coinTransactionCollectionRef = collection(db, "coinTransaction");
@@ -23,7 +28,7 @@ function Transactions() {
         coinTransactionCollectionRef
       );
       const coinTr = [];
-      const readableCoinTr = snapShotsCoinTransaction.docs.map(async (obj) => {
+      snapShotsCoinTransaction.docs.forEach(async (obj) => {
         const found = coinTr.find(
           (i) => i.date == obj.data().createdAt?.slice(0, 10)
         );
@@ -42,16 +47,13 @@ function Transactions() {
       let totalTemp = 0,
         totalRedeemed = 0;
       const objToSet = [];
-      const users = [];
-      const readableTr = snapShots.docs.map(async (obj) => {
+      debugger;
+      snapShots.docs.forEach(async (obj) => {
         const date = obj.id.slice(0, 10);
-        const docRef = doc(db, "users", obj.data().createdBy);
-        const objUser = await getDoc(docRef);
-        totalRedeemed += objUser.data().coinsRedeemed;
+        totalRedeemed += obj.data().coinsAmount;
         totalTemp += obj.data().coinsAmount;
         const found = objToSet.find((i) => i.date == date);
-        if (!users.includes(obj.data().createdBy))
-          users.push(obj.data().createdBy);
+
         const foundTr = coinTr.find((i) => i.date == obj.id.slice(0, 10));
         if (!found) {
           objToSet.push({
@@ -59,7 +61,7 @@ function Transactions() {
             data: obj.data(),
             coinsGenerated: foundTr ? foundTr.coinGenerated : 0,
             coinsRedeemed: obj.data().coinsAmount,
-            dateObj: new Date(date),
+            dateObj: new Date(date).getTime(),
           });
         } else {
           found.coinsGenerated += foundTr
@@ -76,24 +78,25 @@ function Transactions() {
         console.log("obj.data()", obj.data());
         return { date, data: obj.data() };
       });
-      // const dates = objToSet.map((t) => t.date);
-      // const additionalTranscations = coinTr
-      //   .filter((it) => !dates.includes(it.date))
-      //   .map((i) => ({
-      //     date: i.date,
-      //     coinsGenerated: i.coinGenerated,
-      //     coinsRedeemed: i.coinRedeemed,
-      //     data: { amount: 0 },
-      //   }));
+      const dates = objToSet.map((t) => t.date);
+      const additionalTranscations = coinTr
+        .filter((it) => !dates.includes(it.date))
+        .map((i) => ({
+          date: i.date,
+          coinsGenerated: i.coinGenerated,
+          coinsRedeemed: i.coinRedeemed,
+          data: { amount: 0 },
+        }));
       debugger;
       debugger;
-      // const objTotal = [...objToSet, additionalTranscations];
-      // objTotal.sort(compareFunc);
-      // setTransactions(objTotal);
-      objToSet.sort(compareFunc);
-      setTransactions(objToSet);
+      const objTotal = [...objToSet, ...additionalTranscations];
+      objTotal.sort(compareFunc);
+      setTransactions(objTotal);
+      // objToSet.sort(compareFunc);
+      // setTransactions(objToSet);
       setTotalCoinsRedeem(totalRedeemed);
-      setUsers(users);
+      // setUsers(users);
+      debugger;
 
       const collectionRef2 = collection(db, "users");
       const snapShots2 = await getDocs(collectionRef2);
@@ -104,7 +107,10 @@ function Transactions() {
         //   ? snapShots2.docs[i].data().coinsGenerated
         //   : 0;
       }
-      setTotalCoinsGenerated(totalTemp);
+      const coinsGeneratedTotal = objTotal.reduce((tot, cur) => {
+        return tot + cur.coinsGenerated;
+      }, 0);
+      setTotalCoinsGenerated(coinsGeneratedTotal);
     })();
   }, []);
   function handleFilter(type) {
@@ -144,6 +150,7 @@ function Transactions() {
   if (transactions.length == 0) {
     return <h3>Loading...</h3>;
   }
+  debugger;
 
   return (
     <div className={styles.container}>
@@ -181,7 +188,7 @@ function Transactions() {
       </div>
       <h3 className="py-3 pt-5">Total Coins Generated:{totalCoinsGenerated}</h3>
       <h3 className="py-3">Total Coins Redeemed:{totalCoinsRedeem}</h3>
-      <h3 className="py-3">Total Users:{users.length}</h3>
+      <h3 className="py-3">Total Users:{users}</h3>
       {/* {filteredData.length > 0 ? (
         <table>
           <thead>
