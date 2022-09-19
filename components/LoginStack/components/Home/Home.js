@@ -9,6 +9,36 @@ import { app, db } from "./../../../../app/firebase/config";
 import axios from "axios";
 const date = new Date();
 function Home({ data }) {
+  React.useEffect(() => {
+    // !window.adsbygoogle
+    //   ? (window.adsbygoogle = window.adsbygoogle || []).push({})
+    //   : console.log("Adsbygoogle already exists");
+    const url = process.env.NEXT_PUBLIC_HOST_URL + "/posts";
+    (async () => {
+      setFetching(true);
+      axios.get(url).then((res) => {
+        dispatch({ type: "setposts", payload: res.data.data });
+        setFetching(false);
+      });
+    })();
+    const urlCat = process.env.NEXT_PUBLIC_HOST_URL + "/posts/categories";
+    (async () => {
+      setFetching(true);
+      axios.get(urlCat).then((res) => {
+        dispatch({ type: "set-categories", payload: res.data.data });
+        setFetching(false);
+      });
+    })();
+    const urlCatPosts =
+      process.env.NEXT_PUBLIC_HOST_URL + "/posts/categoryPosts";
+    (async () => {
+      setFetching(true);
+      axios.get(urlCatPosts).then((res) => {
+        dispatch({ type: "set-category-posts", payload: res.data.data });
+        setFetching(false);
+      });
+    })();
+  }, []);
   const [state, dispatch] = useContext(UserContext);
 
   const router = useRouter();
