@@ -1,18 +1,18 @@
 .btn{
     border:none;
     outline:none;
-    background-color:red;
+    background-color:#0088ff;
     color:white;
     padding:7px 20px;
     cursor: pointer;
     font-size: 18px;
     border-radius:5px;
     margin-top:15px;
-    border:2px red solid;
+    border:2px #0088ff solid;
     transition:0.2s;
     &:hover{
         background-color:white;
-        color:red;
+        color:#0088ff;
     }
 }
 .miningResult{
