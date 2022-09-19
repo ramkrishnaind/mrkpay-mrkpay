@@ -18,7 +18,7 @@ function GetCoinBtn() {
   return (
     <a href={url}>
       <button className={styles.btn} onClick={handleClick}>
-        💲 Get Coin 💲
+         Get Coin 
       </button>
     </a>
   );
