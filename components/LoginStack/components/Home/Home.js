@@ -9,34 +9,30 @@ import { app, db } from "./../../../../app/firebase/config";
 import axios from "axios";
 const date = new Date();
 function Home({ data }) {
-  React.useEffect(() => {
-    // !window.adsbygoogle
-    //   ? (window.adsbygoogle = window.adsbygoogle || []).push({})
-    //   : console.log("Adsbygoogle already exists");
-    const url = process.env.NEXT_PUBLIC_HOST_URL + "/posts";
-    (async () => {
-      setFetching(true);
-      axios.get(url).then((res) => {
-        dispatch({ type: "setposts", payload: res.data.data });
-        setFetching(false);
-      });
-    })();
-    const urlCat = process.env.NEXT_PUBLIC_HOST_URL + "/posts/categories";
-    (async () => {
-      setFetching(true);
-      axios.get(urlCat).then((res) => {
-        dispatch({ type: "set-categories", payload: res.data.data });
-        setFetching(false);
-      });
-    })();
-    const urlCatPosts =
-      process.env.NEXT_PUBLIC_HOST_URL + "/posts/categoryPosts";
-    (async () => {
-      setFetching(true);
-      axios.get(urlCatPosts).then((res) => {
-        dispatch({ type: "set-category-posts", payload: res.data.data });
-        setFetching(false);
-      });
+  useEffect(() => {
+    (async function () {
+      let uid = null;
+      const hash = localStorage.getItem("uad-cache");
+      if (hash) {
+        uid = hash;
+      } else if (state.userData != null) {
+        uid = state.userData.uid;
+      }
+      if (uid == null) {
+        return;
+      }
+      const docRef = doc(db, "users", uid);
+      const snapShot = await getDoc(docRef);
+      const posts = await fetch(process.env.NEXT_PUBLIC_HOST_URL + "/posts");
+      const postsData = await posts.json();
+      dispatch({ type: "setposts", payload: postsData.data });
+      if (snapShot.exists()) {
+        setNewUser(true);
+        dispatch({ type: "update_user_data", payload: snapShot.data() });
+        return;
+      } else {
+        setNewUser(true);
+      }
     })();
   }, []);
   const [state, dispatch] = useContext(UserContext);
