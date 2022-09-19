@@ -38,7 +38,8 @@ export default function Home() {
         setCookie("token", null);
         dispatch({ type: "redirect-dashboard-false" });
       }, 1000);
-    } else {
+    }
+    if (!localStorage.getItem("uad-cache")) {
       dispatch({ type: "logout" });
     }
     console.log("State in user index:", state);
