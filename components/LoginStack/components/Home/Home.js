@@ -9,32 +9,6 @@ import { app, db } from "./../../../../app/firebase/config";
 import axios from "axios";
 const date = new Date();
 function Home({ data }) {
-  useEffect(() => {
-    (async function () {
-      let uid = null;
-      const hash = localStorage.getItem("uad-cache");
-      if (hash) {
-        uid = hash;
-      } else if (state.userData != null) {
-        uid = state.userData.uid;
-      }
-      if (uid == null) {
-        return;
-      }
-      const docRef = doc(db, "users", uid);
-      const snapShot = await getDoc(docRef);
-      const posts = await fetch(process.env.NEXT_PUBLIC_HOST_URL + "/posts");
-      const postsData = await posts.json();
-      dispatch({ type: "setposts", payload: postsData.data });
-      if (snapShot.exists()) {
-        setNewUser(true);
-        dispatch({ type: "update_user_data", payload: snapShot.data() });
-        return;
-      } else {
-        setNewUser(true);
-      }
-    })();
-  }, []);
   const [state, dispatch] = useContext(UserContext);
 
   const router = useRouter();
@@ -56,6 +30,32 @@ function Home({ data }) {
       console.log(targetObj);
     }
   }
+  useEffect(() => {
+    (async function () {
+      let uid = null;
+      const hash = localStorage.getItem("uad-cache");
+      if (hash) {
+        uid = hash;
+      } else if (state.userData != null) {
+        uid = state.userData.uid;
+      }
+      if (uid == null) {
+        return;
+      }
+      const docRef = doc(db, "users", uid);
+      const snapShot = await getDoc(docRef);
+      const posts = await fetch(process.env.NEXT_PUBLIC_HOST_URL + "/posts");
+      const postsData = await posts.json();
+      dispatch({ type: "setposts", payload: postsData.data });
+      if (snapShot.exists()) {
+        // setNewUser(true);
+        dispatch({ type: "update_user_data", payload: snapShot.data() });
+        return;
+      } else {
+        // setNewUser(true);
+      }
+    })();
+  }, []);
   useEffect(() => {
     localStorage.setItem("mozilla-support-status", "na");
     // getRandomPost();

@@ -7,9 +7,7 @@ function PendingPayments() {
   const [unUsedCodesCount, setUnUsedCodesCount] = useState(0);
 
   const [file, setFile] = useState("");
-  const [fileName, setFileName] = useState("No file choosen");
-  const [successMsg, setSuccessMsg] = useState(false);
-  useEffect(() => {
+  const CheckCodes = () => {
     const url = process.env.NEXT_PUBLIC_HOST_URL + "/upload";
     axios.get(url).then((res) => {
       const result = res.data;
@@ -28,12 +26,20 @@ function PendingPayments() {
       setUsedCodesCount(used);
       setUnUsedCodesCount(unused);
     });
+  };
+  const [fileName, setFileName] = useState("No file choosen");
+  const [successMsg, setSuccessMsg] = useState(false);
+  useEffect(() => {
+    CheckCodes();
   }, []);
   const url = process.env.NEXT_PUBLIC_HOST_URL + "/upload";
   const handleChange = (e) => {
     setSuccessMsg(false);
     setFile(e.target.files[0]);
     setFileName(e.target.files[0].name);
+    setTimeout(() => {
+      CheckCodes();
+    }, 3000);
   };
   const handleSubmit = async (e) => {
     const formData = new FormData();
