@@ -98,7 +98,7 @@ export default function Home({ width, marginX }) {
                   />
                 </Link>
                 <Link href="/user">
-                  <div className="hidden cursor-pointer rounded-lg h-[1.5rem] align-middle md:flex bg-red-500 w-15 px-2 text-orange-200">
+                  <div className="hidden cursor-pointer rounded-lg h-[1.5rem] align-middle md:flex bg-red-500 w-24 px-2 text-orange-200">
                     Earn Coin
                   </div>
                 </Link>
@@ -158,7 +158,7 @@ export default function Home({ width, marginX }) {
                       />
                     </Link>
                     <Link href="/user">
-                      <div className="text-xs md:hidden rounded-lg py-1 align-middle flex bg-red-500 w-15 px-2 text-orange-200">
+                      <div className="text-xs md:hidden rounded-lg py-1 align-middle flex bg-red-500 w-24 px-2 text-orange-200">
                         Earn Coin
                       </div>
                     </Link>
