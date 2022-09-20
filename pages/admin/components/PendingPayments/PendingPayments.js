@@ -3,6 +3,7 @@ import styles from "./style.module.scss";
 import axios from "axios";
 function PendingPayments() {
   const [codes, setCodes] = useState([]);
+  const [codesUploaded, setCodesUploaded] = useState([]);
   const [usedCodesCount, setUsedCodesCount] = useState(0);
   const [unUsedCodesCount, setUnUsedCodesCount] = useState(0);
 
@@ -36,20 +37,27 @@ function PendingPayments() {
   const handleChange = (e) => {
     setSuccessMsg(false);
     setFile(e.target.files[0]);
+    debugger;
+    const fr = new FileReader();
+    fr.onload = function () {
+      debugger;
+      const codes_arr = fr.result.split("\r\n").filter((code) => code != "");
+      console.log("codes_arr", codes_arr);
+      setCodesUploaded(codes_arr);
+    };
+
+    fr.readAsText(e.target.files[0]);
     setFileName(e.target.files[0].name);
     setTimeout(() => {
       CheckCodes();
     }, 3000);
   };
   const handleSubmit = async (e) => {
-    const formData = new FormData();
-    formData.append("file", file);
+    // const formData = new FormData();
+    // formData.append("file", file);
+    if (codesUploaded.length == 0) return;
     try {
-      const res = await axios.post(url, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await axios.post(url, { codes: codesUploaded });
       if (res.data.status == "success") {
         setSuccessMsg(true);
         setFile(null);
