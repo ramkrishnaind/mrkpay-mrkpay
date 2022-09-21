@@ -17,17 +17,47 @@ function Transactions() {
       console.log("Fetching transactions...");
       debugger;
 
-      const users = [];
+      // const users = [];
       const snapshot = await getDocs(collection(db, "users"));
       debugger;
       setUsers(snapshot.docs.length);
       const collectionRef = collection(db, "transactions");
       const snapShots = await getDocs(collectionRef);
+
+      let totalRedeemed = 0;
+      const objToSet = [];
+      debugger;
+      snapShots.docs.forEach(async (obj) => {
+        const date = obj.id.slice(0, 10);
+        totalRedeemed += obj.data().coinsAmount;
+        // totalTemp += obj.data().coinsAmount;
+        const found = objToSet.find((i) => i.date == date);
+
+        if (!found) {
+          objToSet.push({
+            date,
+            data: obj.data(),
+            coinsGenerated: 0,
+            coinsRedeemed: obj.data().coinsAmount,
+            // dateObj: new Date(date).getTime(),
+          });
+        } else {
+          found.coinsGenerated += 0;
+          found.coinsRedeemed += !isNaN(obj.data().coinsAmount)
+            ? obj.data().coinsAmount
+            : 0;
+          // found.amount += obj.data().amount;
+        }
+        // console.log("objToSet", objToSet);
+        // console.log("obj.data()", obj.data());
+        return { date, data: obj.data() };
+      });
       const coinTransactionCollectionRef = collection(db, "coinTransaction");
       const snapShotsCoinTransaction = await getDocs(
         coinTransactionCollectionRef
       );
       const coinTr = [];
+      // const foundTr = coinTr.find((i) => i.date == obj.id.slice(0, 10));
       snapShotsCoinTransaction.docs.forEach(async (obj) => {
         const found = coinTr.find(
           (i) => i.date == obj.data().createdAt?.slice(0, 10)
@@ -44,41 +74,20 @@ function Transactions() {
           coinTr.push({ date, coinGenerated, coinRedeemed: 0 });
         }
       });
-      let totalTemp = 0,
-        totalRedeemed = 0;
-      const objToSet = [];
-      debugger;
-      snapShots.docs.forEach(async (obj) => {
-        const date = obj.id.slice(0, 10);
-        totalRedeemed += obj.data().coinsAmount;
-        totalTemp += obj.data().coinsAmount;
-        const found = objToSet.find((i) => i.date == date);
-
-        const foundTr = coinTr.find((i) => i.date == obj.id.slice(0, 10));
-        if (!found) {
-          objToSet.push({
-            date,
-            data: obj.data(),
-            coinsGenerated: foundTr ? foundTr.coinGenerated : 0,
-            coinsRedeemed: obj.data().coinsAmount,
-            dateObj: new Date(date).getTime(),
-          });
-        } else {
-          found.coinsGenerated += foundTr
-            ? !isNaN(foundTr.coinGenerated)
-              ? foundTr.coinGenerated
-              : 0
-            : 0;
-          found.coinsRedeemed += !isNaN(obj.data().coinsAmount)
-            ? obj.data().coinsAmount
-            : 0;
-          found.amount += obj.data().amount;
-        }
-        console.log("objToSet", objToSet);
-        console.log("obj.data()", obj.data());
-        return { date, data: obj.data() };
-      });
       const dates = objToSet.map((t) => t.date);
+      const actualTranscations = coinTr
+        .filter((it) => dates.includes(it.date))
+        .map((i) => ({
+          date: i.date,
+          coinsGenerated: i.coinGenerated,
+          coinsRedeemed: i.coinRedeemed,
+          data: { amount: 0 },
+        }));
+      objToSet.forEach((it) => {
+        debugger;
+        const foundTran = actualTranscations.find((i) => i.date === it.date);
+        if (foundTran) it.coinsGenerated += foundTran.coinsGenerated;
+      });
       const additionalTranscations = coinTr
         .filter((it) => !dates.includes(it.date))
         .map((i) => ({
@@ -218,7 +227,7 @@ function Transactions() {
             <td>Date</td>
             <td>Coins Generated</td>
             <td>Coins Redeeemed</td>
-            <td>Rupees</td>
+            {/* <td>Rupees</td> */}
           </tr>
         </thead>
         <tbody>
@@ -228,7 +237,7 @@ function Transactions() {
                 <td>{tr.date}</td>
                 <td>{tr.coinsGenerated}</td>
                 <td>{tr.coinsRedeemed}</td>
-                <td>{tr.data?.amount}</td>
+                {/* <td>{tr.data?.amount}</td> */}
               </tr>
             );
           })}
