@@ -1,7 +1,4 @@
-import React from "react";
-
-function ContactUs() {
-  return <div>contact-us</div>;
+function Contact (){
+  return <div><h1>Contact Us on</h1><p>mrkpay.sup@gmail.com</p></div>;
 }
-
-export default ContactUs;
+export default Contact
