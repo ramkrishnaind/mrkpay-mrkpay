@@ -8,13 +8,4 @@ const nextConfig = {
   },
 };
 
-module.exports = {
-    async rewrites() {
-        return [
-          {
-            source: '/api/:path*',
-            destination: 'https://mrkpay.com/:path*',
-          },
-        ]
-      },
-  };
+module.exports = nextConfig;
