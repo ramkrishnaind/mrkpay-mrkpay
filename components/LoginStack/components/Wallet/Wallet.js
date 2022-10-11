@@ -37,13 +37,13 @@ function Wallet() {
               className={
                 data.coinsGenerated >= 50 ? styles.active : styles.inactive
               }
-              disabled={data.coinsGenerated < 50}
+              disabled={data.coinsGenerated < 200}
             >
               Withdraw Coins
             </button>
           </Link>
 
-          <h3 style={{ display: data.coinsGenerated < 50 ? "block" : "none" }}>
+          <h3 style={{ display: data.coinsGenerated < 200 ? "block" : "none" }}>
             You can only withdraw coins more than 50
           </h3>
         </div>
