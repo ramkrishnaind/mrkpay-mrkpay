@@ -11,7 +11,7 @@ function Withdraw() {
   const [codes, setCodes] = useState([]);
 
   useEffect(() => {
-    const targetAmount = parseInt(state.userData.coinsGenerated / 20) * 10;
+    const targetAmount = parseInt(state.userData.coinsGenerated / 10) * 10;
     let temp = 0;
     for (let i = 0; i <= targetAmount; i += 200) {
       temp = i;
