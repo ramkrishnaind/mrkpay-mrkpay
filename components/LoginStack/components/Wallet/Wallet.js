@@ -35,7 +35,7 @@ function Wallet() {
           <Link href="/user/withdraw">
             <button
               className={
-                data.coinsGenerated >= 50 ? styles.active : styles.inactive
+                data.coinsGenerated >= 200 ? styles.active : styles.inactive
               }
               disabled={data.coinsGenerated < 200}
             >
