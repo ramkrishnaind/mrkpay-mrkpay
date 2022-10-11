@@ -44,7 +44,7 @@ function Wallet() {
           </Link>
 
           <h3 style={{ display: data.coinsGenerated < 200 ? "block" : "none" }}>
-            You can only withdraw coins more than 50
+            You can only withdraw coins more than 200
           </h3>
         </div>
       </div>
