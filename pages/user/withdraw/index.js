@@ -13,7 +13,7 @@ function Withdraw() {
   useEffect(() => {
     const targetAmount = parseInt(state.userData.coinsGenerated / 10) * 10;
     let temp = 0;
-    for (let i = 0; i <= targetAmount; i += 100) {
+    for (let i = 0; i <= targetAmount; i += 200) {
       temp = i;
     }
     setAvailableAmount(temp);
@@ -21,7 +21,7 @@ function Withdraw() {
 
   function startTransaction() {
     const coins = state.userData.coinsGenerated;
-    if (coins < 100) {
+    if (coins < 200) {
       return;
     }
     setWithdrawing(true);
