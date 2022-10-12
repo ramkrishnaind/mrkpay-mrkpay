@@ -18,7 +18,7 @@ function Wallet() {
             <span>Current Balance</span>
             <p>
               <strong>₹</strong>
-              {parseFloat((data?.coinsGenerated || 0) / 5).toFixed(2)}
+              {parseFloat((data?.coinsGenerated || 0) / 20).toFixed(2)}
             </p>
           </div>
           <div className={styles.mrkcoins}>
@@ -35,7 +35,7 @@ function Wallet() {
           <Link href="/user/withdraw">
             <button
               className={
-                data.coinsGenerated >= 50 ? styles.active : styles.inactive
+                data.coinsGenerated >= 200 ? styles.active : styles.inactive
               }
               disabled={data.coinsGenerated < 200}
             >
