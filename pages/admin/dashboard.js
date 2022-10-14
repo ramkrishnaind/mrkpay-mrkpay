@@ -4,18 +4,28 @@ import { GetAdminContext } from "../../app/state/contexts/adminContext";
 import Home from "./components/Home/Home";
 import Posts from "./components/Posts/Posts";
 import Settings from "./components/Settings/Settings";
-import Reports from "./components/Reports/Reports";
+//import Reports from "./components/Reports/Reports";
 import PendingPayments from "./components/PendingPayments/PendingPayments";
 
 function Dashboard() {
   const [state, dispatch] = useContext(GetAdminContext);
-  const [selectedTab, setSelectedTab] = useState("Settings");
+  const [selectedTab, setSelectedTab] = useState("Pending");
   console.log("state?.loggedIn", state?.loggedIn);
   console.log("state", state);
   if (state?.loggedIn) {
     return (
       <div className={styles.container}>
-        <nav>
+        <nav>          
+      <a
+            onClick={() => setSelectedTab("Pending")}
+            style={{
+              borderBottom: `2px ${
+                selectedTab === "Pending" ? "black" : "transparent"
+              } solid`,
+            }}
+          >
+            Redeem Code
+          </a>
               <a
             onClick={() => setSelectedTab("Settings")}
             style={{
@@ -36,7 +46,7 @@ function Dashboard() {
           >
             Posts
           </a>
-          <a
+        {/*  <a
             onClick={() => setSelectedTab("Reports")}
             style={{
               borderBottom: `2px ${
@@ -45,17 +55,8 @@ function Dashboard() {
             }}
           >
             User
-          </a>
-          <a
-            onClick={() => setSelectedTab("Pending")}
-            style={{
-              borderBottom: `2px ${
-                selectedTab === "Pending" ? "black" : "transparent"
-              } solid`,
-            }}
-          >
-            Redeem
-          </a>
+          </a>*/}
+
                 <a
             onClick={() => setSelectedTab("Home")}
             style={{
@@ -70,7 +71,7 @@ function Dashboard() {
         <div className={styles.tabContent}>          
         {selectedTab === "Settings" && <Settings />}  
         {selectedTab === "Posts" && <Posts />}
-          {selectedTab === "Reports" && <Reports />} 
+        {/*  {selectedTab === "Reports" && <Reports />} */}
           {selectedTab === "Pending" && <PendingPayments />}
           {selectedTab === "Home" && <Home />}
 
