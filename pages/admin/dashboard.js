@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import styles from "./dashboard.module.scss";
 import { GetAdminContext } from "../../app/state/contexts/adminContext";
 import Home from "./components/Home/Home";
-import Posts from "./components/Posts/Posts";
+//import Posts from "./components/Posts/Posts";
 import Settings from "./components/Settings/Settings";
 //import Reports from "./components/Reports/Reports";
 import PendingPayments from "./components/PendingPayments/PendingPayments";
@@ -26,7 +26,7 @@ function Dashboard() {
           >
             Home
           </a>
-          <a
+         {/* <a
             onClick={() => setSelectedTab("Posts")}
             style={{
               borderBottom: `2px ${
@@ -35,7 +35,7 @@ function Dashboard() {
             }}
           >
             Posts
-          </a>
+          </a>*/}
           {/*<a
             onClick={() => setSelectedTab("Reports")}
             style={{
@@ -69,7 +69,7 @@ function Dashboard() {
         </nav>
         <div className={styles.tabContent}>
           {selectedTab === "Home" && <Home />}
-          {selectedTab === "Posts" && <Posts />}
+        {/*  {selectedTab === "Posts" && <Posts />}*/}
         {/*  {selectedTab === "Reports" && <Reports />} */}
           {selectedTab === "Pending" && <PendingPayments />}
           {selectedTab === "Settings" && <Settings />}
