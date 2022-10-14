@@ -24,9 +24,9 @@ function Dashboard() {
               } solid`,
             }}
           >
-            Home
+            Report
           </a>
-         {/* <a
+          <a
             onClick={() => setSelectedTab("Posts")}
             style={{
               borderBottom: `2px ${
@@ -35,8 +35,8 @@ function Dashboard() {
             }}
           >
             Posts
-          </a>*/}
-          {/*<a
+          </a>
+          <a
             onClick={() => setSelectedTab("Reports")}
             style={{
               borderBottom: `2px ${
@@ -44,8 +44,8 @@ function Dashboard() {
               } solid`,
             }}
           >
-            Reports
-          </a>*/}
+            User
+          </a>
           <a
             onClick={() => setSelectedTab("Pending")}
             style={{
@@ -54,7 +54,7 @@ function Dashboard() {
               } solid`,
             }}
           >
-            Payments
+            Redeem Code
           </a>
           <a
             onClick={() => setSelectedTab("Settings")}
@@ -67,12 +67,13 @@ function Dashboard() {
             Settings
           </a>
         </nav>
-        <div className={styles.tabContent}>
-          {selectedTab === "Home" && <Home />}
-        {/*  {selectedTab === "Posts" && <Posts />}*/}
-        {/*  {selectedTab === "Reports" && <Reports />} */}
+        <div className={styles.tabContent}>          
+        {selectedTab === "Settings" && <Settings />}  
+        {selectedTab === "Posts" && <Posts />}
+          {selectedTab === "Reports" && <Reports />} 
           {selectedTab === "Pending" && <PendingPayments />}
-          {selectedTab === "Settings" && <Settings />}
+          {selectedTab === "Home" && <Home />}
+
         </div>
       </div>
     );
