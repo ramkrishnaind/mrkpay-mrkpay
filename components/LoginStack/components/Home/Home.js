@@ -30,6 +30,19 @@ function Home({ data }) {
       console.log(targetObj);
     }
   }
+  function getEquivalentSlug(title) {
+    let slug = "";
+    let oldTitle = title;
+
+    for (let i = 0; i < oldTitle.length; i++) {
+      if (oldTitle[i] == " ") {
+        slug += "-";
+      } else {
+        slug += oldTitle[i].toLowerCase();
+      }
+    }
+    return slug;
+  }
   useEffect(() => {
     (async function () {
       let uid = null;
@@ -72,6 +85,45 @@ function Home({ data }) {
     // const res = getRandomPost();
     // debugger;
     if (path) router.replace(path);
+  };
+  const topHandler = (e) => {
+    e.preventDefault();
+    // const res = getRandomPost();
+    // debugger;
+
+    const url = process.env.NEXT_PUBLIC_HOST_URL + "/foreversPosts";
+    (async () => {
+      axios.get(url).then((res) => {
+        const allPosts = res.data.data;
+        const slugs = allPosts.map((obj) => getEquivalentSlug(obj.data.title));
+        const randomId = slugs[Math.floor(Math.random() * slugs.length)];
+        const status = localStorage.getItem("mozilla-support-status");
+        console.log(status);
+        if (status == "3") {
+          // localStorage.setItem("mozilla-support-status", "4");
+          Router.push("/news/" + randomId + "#top");
+        }
+      });
+    })();
+  };
+  const bottomHandler = (e) => {
+    e.preventDefault();
+    // const res = getRandomPost();
+    // debugger;
+    const url = process.env.NEXT_PUBLIC_HOST_URL + "/foreversPosts";
+    (async () => {
+      axios.get(url).then((res) => {
+        const allPosts = res.data.data;
+        const slugs = allPosts.map((obj) => getEquivalentSlug(obj.data.title));
+        const randomId = slugs[Math.floor(Math.random() * slugs.length)];
+        const status = localStorage.getItem("mozilla-support-status");
+        console.log(status);
+        if (status == "3") {
+          // localStorage.setItem("mozilla-support-status", "4");
+          Router.push("/news/" + randomId + "#footer");
+        }
+      });
+    })();
   };
   function createSlug(title) {
     let slug = "";
@@ -132,6 +184,12 @@ function Home({ data }) {
       <div className={styles.btnContainer}>
         {/* <h3>You can start earning now 💵</h3> */}
         {/* <Link href={path}> */}
+        <button className={styles.btn} onClick={topHandler}>
+          Top
+        </button>
+        <button className={styles.btn} onClick={bottomHandler}>
+          Bottom
+        </button>
         <button className={styles.btn} onClick={clickHandler}>
           Start Earning Coin
         </button>
