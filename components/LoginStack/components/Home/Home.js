@@ -103,8 +103,9 @@ function Home({ data }) {
         // if (status == "3") {
         // localStorage.setItem("mozilla-support-status", "4");
         window.open(
-          process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#top",
-          "_blank"
+          process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#top"
+          // ,
+          // "_blank"
         );
         // Router.push("/news/" + randomId + "#top");
         // }
@@ -126,8 +127,9 @@ function Home({ data }) {
         // if (status == "3") {
         // localStorage.setItem("mozilla-support-status", "4");
         window.open(
-          process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#footer",
-          "_blank"
+          process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#footer"
+          // ,
+          // "_blank"
         );
         // Router.push("/news/" + randomId + "#footer");
         // }
