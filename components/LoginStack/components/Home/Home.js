@@ -97,12 +97,12 @@ function Home({ data }) {
         const allPosts = res.data.data;
         const slugs = allPosts.map((obj) => getEquivalentSlug(obj.data.title));
         const randomId = slugs[Math.floor(Math.random() * slugs.length)];
-        const status = localStorage.getItem("mozilla-support-status");
-        console.log(status);
-        if (status == "3") {
-          // localStorage.setItem("mozilla-support-status", "4");
-          Router.push("/news/" + randomId + "#top");
-        }
+        // const status = localStorage.getItem("mozilla-support-status");
+        // console.log(status);
+        // if (status == "3") {
+        // localStorage.setItem("mozilla-support-status", "4");
+        Router.push("/news/" + randomId + "#top");
+        // }
       });
     })();
   };
@@ -118,10 +118,10 @@ function Home({ data }) {
         const randomId = slugs[Math.floor(Math.random() * slugs.length)];
         const status = localStorage.getItem("mozilla-support-status");
         console.log(status);
-        if (status == "3") {
-          // localStorage.setItem("mozilla-support-status", "4");
-          Router.push("/news/" + randomId + "#footer");
-        }
+        // if (status == "3") {
+        // localStorage.setItem("mozilla-support-status", "4");
+        Router.push("/news/" + randomId + "#footer");
+        // }
       });
     })();
   };
