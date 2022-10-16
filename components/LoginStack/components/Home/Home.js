@@ -102,12 +102,14 @@ function Home({ data }) {
         // console.log(status);
         // if (status == "3") {
         // localStorage.setItem("mozilla-support-status", "4");
-        window.open(
+        // window.open(
+        //   process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#top"
+        //   // ,
+        //   // "_blank"
+        // );
+        Router.push(
           process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#top"
-          // ,
-          // "_blank"
         );
-        // Router.push("/news/" + randomId + "#top");
         // }
       });
     })();
@@ -126,12 +128,14 @@ function Home({ data }) {
         console.log(status);
         // if (status == "3") {
         // localStorage.setItem("mozilla-support-status", "4");
-        window.open(
+        // window.open(
+        //   process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#footer"
+        //   // ,
+        //   // "_blank"
+        // );
+        Router.push(
           process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#footer"
-          // ,
-          // "_blank"
         );
-        // Router.push("/news/" + randomId + "#footer");
         // }
       });
     })();
