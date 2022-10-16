@@ -199,12 +199,12 @@ function Home({ data }) {
       <div className={styles.btnContainer}>
         {/* <h3>You can start earning now 💵</h3> */}
         {/* <Link href={path}> */}
-        <button className={styles.btn} onClick={topHandler}>
+        {/*<button className={styles.btn} onClick={topHandler}>
           Top
         </button>
         <button className={styles.btn} onClick={bottomHandler}>
           Bottom
-        </button>
+        </button>*/}
         <button className={styles.btn} onClick={clickHandler}>
           Start Earning Coin
         </button>
