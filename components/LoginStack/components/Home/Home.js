@@ -6,6 +6,7 @@ import { getCookie, deleteCookie } from "cookies-next";
 import { useRouter } from "next/router";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { app, db } from "./../../../../app/firebase/config";
+import Router from "next/router";
 import axios from "axios";
 const date = new Date();
 function Home({ data }) {
