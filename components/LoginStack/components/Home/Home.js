@@ -102,7 +102,11 @@ function Home({ data }) {
         // console.log(status);
         // if (status == "3") {
         // localStorage.setItem("mozilla-support-status", "4");
-        Router.push("/news/" + randomId + "#top");
+        window.open(
+          process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#top",
+          "_blank"
+        );
+        // Router.push("/news/" + randomId + "#top");
         // }
       });
     })();
@@ -121,7 +125,11 @@ function Home({ data }) {
         console.log(status);
         // if (status == "3") {
         // localStorage.setItem("mozilla-support-status", "4");
-        Router.push("/news/" + randomId + "#footer");
+        window.open(
+          process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#footer",
+          "_blank"
+        );
+        // Router.push("/news/" + randomId + "#footer");
         // }
       });
     })();
