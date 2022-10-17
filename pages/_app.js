@@ -174,18 +174,30 @@ function MyApp({ Component, pageProps }) {
   );
   return (
     <AdminContextContainer>
-      {/* <Script
+      <Script
         id="Adsense-id"
         async
-        data-ad-client="ca-pub-2397723075092719"
+        // data-ad-client="ca-pub-2397723075092719"
         onError={(e) => {
           console.error("Script failed to load", e);
         }}
         strategy="afterInteractive"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2397723075092719"
+        src="https://www.googletagmanager.com/gtag/js?id=G-16W10XZ5WT"
         crossorigin="anonymous"
-      /> */}
-
+      />
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'G-16W10XZ5WT');
+              `,
+        }}
+      />
       <UserContextContainer>
         {router.asPath.includes("/news/")
           ? news
