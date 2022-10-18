@@ -132,7 +132,7 @@ export default function UserReducer(state, action) {
   } else if (type == "redirect-dashboard-false") {
     return { ...state, redirectToDashboard: false };
   } else if (type == "set-current-post") {
-    debugger;
+    // debugger;
     const newState = { ...state };
     newState.currentPosts = [
       ...newState.posts.filter(

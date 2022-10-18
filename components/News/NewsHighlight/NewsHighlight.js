@@ -16,7 +16,7 @@ function NewsHighlight({ data, id }) {
       slug = slug.substr(0, slug.length - 1);
   }
   console.log("slug", data.title);
-  debugger;
+  // debugger;
   function createMarkup(length = 30) {
     console.log("data.details", data.title);
     const p = document.createElement("p");

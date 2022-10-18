@@ -20,7 +20,7 @@ function Home({ data }) {
   async function addGeneratedCoin(cache) {
     let targetObj;
     console.log("s");
-    debugger;
+    // debugger;
     const docRef = doc(db, "users", cache);
     const obj = await getDoc(docRef);
     targetObj = obj.data();
@@ -74,7 +74,7 @@ function Home({ data }) {
     localStorage.setItem("mozilla-support-status", "na");
     // getRandomPost();
     const tokenGenerated = getCookie("token");
-    debugger;
+    // debugger;
     if (tokenGenerated == "0x0000000000000000000000000000000000000000") {
       //increment coin here...
       deleteCookie("token");

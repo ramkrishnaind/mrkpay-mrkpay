@@ -11,7 +11,7 @@ const RelatednPosts = ({ N = 5, orientation = "Vertical" }) => {
   console.log("state now", state);
   const currentCategories = state?.currentPosts?.[0]?.data?.categories || [];
   useEffect(() => {
-    debugger;
+    // debugger;
     if (currentCategories && currentCategories?.length > 0) {
       const postsCurrentCategory = state.posts.filter((item) => {
         const found = false;
