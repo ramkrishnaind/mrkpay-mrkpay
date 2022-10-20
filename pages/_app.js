@@ -182,6 +182,17 @@ function MyApp({ Component, pageProps }) {
           console.error("Script failed to load", e);
         }}
         strategy="afterInteractive"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3107788607445438"
+        crossorigin="anonymous"
+      />
+      <Script
+        id="Adsense-id"
+        async
+        // data-ad-client="ca-pub-2397723075092719"
+        onError={(e) => {
+          console.error("Script failed to load", e);
+        }}
+        strategy="afterInteractive"
         src="https://www.googletagmanager.com/gtag/js?id=G-16W10XZ5WT"
         crossorigin="anonymous"
       />
