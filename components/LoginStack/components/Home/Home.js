@@ -298,7 +298,7 @@ function Home({ data }) {
                     className={`${styles.verfbtn} w-44 md:w-72`}
                     onClick={validateHandler}
                   >
-                    Verify
+                    VERIFY
                   </button>
                 </>
               )}
