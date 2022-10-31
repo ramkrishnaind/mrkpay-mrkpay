@@ -20,6 +20,7 @@ function Home({ data }) {
   // data.coinsGenerated = 15;
   const [state, dispatch] = useContext(UserContext);
   const [validated, setValidated] = useState(false);
+  const [adClicked, setAdClicked] = useState(false);
   const [validationFailed, setValidationFailed] = useState(false);
   const [top, setTop] = useState(true);
   const router = useRouter();
@@ -41,6 +42,16 @@ function Home({ data }) {
       console.log(targetObj);
     }
   }
+  useEffect(() => {
+    const adclicked = localStorage.getItem("adclicked");
+    if (adclicked) {
+      if (adclicked === "true") {
+        setAdClicked(true);
+      } else {
+        setAdClicked(false);
+      }
+    }
+  }, []);
   useEffect(() => {
     const goto = localStorage.getItem("goto");
     if (goto) {
@@ -128,7 +139,7 @@ function Home({ data }) {
         //   // ,
         //   // "_blank"
         // );
-        debugger;
+        localStorage.setItem("adclicked", "true");
         Router.push(
           `${process.env.NEXT_PUBLIC_APP_URL}/news/${randomId}${
             top ? "#top" : "#footer"
@@ -160,9 +171,10 @@ function Home({ data }) {
           }
         }
       }
-      i = i % 5;
+
       localStorage.setItem(`validateUrl-${i}`, value);
       localStorage.setItem("goto", top ? "bottom" : "top");
+      localStorage.setItem("adclicked", "false");
       inputRef.current.value = "";
       setValidated(true);
     } else {
@@ -243,45 +255,53 @@ function Home({ data }) {
               >
                 Click for Verification
               </button>
-              <div style={{ margin: "20px 10px" }} className={`w-44 md:w-72`}>
-                <label style={{ display: "inline-block", width: "100%" }}>
-                  Ad Url {"  "}
-                  <input
-                    ref={inputRef}
-                    style={{
-                      border: "1px solid gray",
-                      padding: "5px",
-                      width: "90%",
-                    }}
-                  />
-                </label>
-              </div>
-              {validationFailed && (
-                <div
-                  style={{
-                    margin: "20px 10px",
-                    border: "1px solid red",
-                    width: 280,
-                  }}
-                >
-                  <label
-                    style={{
-                      display: "inline-block",
-                      width: "100%",
-                      color: "red",
-                      padding: "5px",
-                    }}
+              {adClicked && (
+                <>
+                  <div
+                    style={{ margin: "20px 10px" }}
+                    className={`w-44 md:w-72`}
                   >
-                    Validation failed
-                  </label>
-                </div>
+                    <label style={{ display: "inline-block", width: "100%" }}>
+                      Ad Url {"  "}
+                      <input
+                        ref={inputRef}
+                        style={{
+                          border: "1px solid gray",
+                          padding: "5px",
+                          width: "90%",
+                        }}
+                      />
+                    </label>
+                  </div>
+                  {validationFailed && (
+                    <div
+                      style={{
+                        margin: "20px 10px",
+                        border: "1px solid red",
+                        width: 280,
+                      }}
+                    >
+                      <label
+                        style={{
+                          display: "inline-block",
+                          width: "100%",
+                          color: "red",
+                          padding: "5px",
+                        }}
+                      >
+                        Validation failed
+                      </label>
+                    </div>
+                  )}
+
+                  <button
+                    className={`${styles.btn} w-44 md:w-72`}
+                    onClick={validateHandler}
+                  >
+                    Validate
+                  </button>
+                </>
               )}
-              <button
-                className={`${styles.btn} w-44 md:w-72`}
-                onClick={validateHandler}
-              >
-                Validate
-              </button>
             </>
           )}
         {/*<button className={styles.btn} onClick={topHandler}>
