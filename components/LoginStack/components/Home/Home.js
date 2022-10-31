@@ -140,7 +140,7 @@ function Home({ data }) {
   const validateHandler = (e) => {
     debugger;
     const value = inputRef.current.value.toLowerCase().trim();
-    if (value === "") return;
+    if (value === "" || value.length < 15) return;
     if (value.includes("gclid=") || value.includes("utm_source=")) {
       let i;
       for (i = 1; i <= 5; i++) {
@@ -232,60 +232,63 @@ function Home({ data }) {
       <div className={styles.btnContainer}>
         {/* <h3>You can start earning now 💵</h3> */}
         {/* <Link href={path}> */}
-        {data.coinsGenerated % 15 === 0 && !validated && (
-          <>
-            <button className={styles.btn} onClick={buttonHandler}>
-              Go to random post
-            </button>
-            <div style={{ margin: "20px 10px", width: 380 }}>
-              <label style={{ display: "inline-block", width: "100%" }}>
-                Ad Url {"  "}
-                <input
-                  ref={inputRef}
-                  style={{
-                    border: "1px solid gray",
-                    padding: "5px",
-                    width: "80%",
-                  }}
-                />
-              </label>
-            </div>
-            {validationFailed && (
-              <div
-                style={{
-                  margin: "20px 10px",
-                  border: "1px solid red",
-                  width: 280,
-                }}
-              >
-                <label
-                  style={{
-                    display: "inline-block",
-                    width: "100%",
-                    color: "red",
-                    padding: "5px",
-                  }}
-                >
-                  Validation failed
+        {data.coinsGenerated !== 0 &&
+          data.coinsGenerated % 15 === 0 &&
+          !validated && (
+            <>
+              <button className={styles.btn} onClick={buttonHandler}>
+                Go to random post
+              </button>
+              <div style={{ margin: "20px 10px", width: 380 }}>
+                <label style={{ display: "inline-block", width: "100%" }}>
+                  Ad Url {"  "}
+                  <input
+                    ref={inputRef}
+                    style={{
+                      border: "1px solid gray",
+                      padding: "5px",
+                      width: "80%",
+                    }}
+                  />
                 </label>
               </div>
-            )}
-            <button className={styles.btn} onClick={validateHandler}>
-              Validate Url
-            </button>
-          </>
-        )}
+              {validationFailed && (
+                <div
+                  style={{
+                    margin: "20px 10px",
+                    border: "1px solid red",
+                    width: 280,
+                  }}
+                >
+                  <label
+                    style={{
+                      display: "inline-block",
+                      width: "100%",
+                      color: "red",
+                      padding: "5px",
+                    }}
+                  >
+                    Validation failed
+                  </label>
+                </div>
+              )}
+              <button className={styles.btn} onClick={validateHandler}>
+                Validate Url
+              </button>
+            </>
+          )}
         {/*<button className={styles.btn} onClick={topHandler}>
           Top
         </button>
         <button className={styles.btn} onClick={bottomHandler}>
           Bottom
         </button>*/}
-        {(data.coinsGenerated % 15 !== 0 || validated) && (
-          <button className={styles.btn} onClick={clickHandler}>
-            Start Earning Coin
-          </button>
-        )}
+        {data.coinsGenerated === 0 ||
+          ((data.coinsGenerated % 15 !== 0 || validated) && (
+            <button className={styles.btn} onClick={clickHandler}>
+              Start Earning Coin
+            </button>
+          ))}
         {/* </Link> */}
       </div>
     </div>
