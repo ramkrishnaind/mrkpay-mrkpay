@@ -261,7 +261,7 @@ function Home({ data }) {
                     style={{ margin: "20px 10px" }}
                     className={`w-44 md:w-72`}
                   >
-                    <label style={{ display: "inline-block", width: "100%", text-align: "center" }}>
+                    <label style={{ display: "inline-block", width: "100%" }}>
                       INSERT BANNER LINK {"  "}
                       <input
                         ref={inputRef}
