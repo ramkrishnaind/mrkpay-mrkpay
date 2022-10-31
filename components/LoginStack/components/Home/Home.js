@@ -253,7 +253,7 @@ function Home({ data }) {
                 className={`${styles.ctvbtn} w-44 md:w-72`}
                 onClick={buttonHandler}
               >
-                GET AD URL 
+                GET BANNER LINK 
               </button>
               {adClicked && (
                 <>
@@ -262,14 +262,13 @@ function Home({ data }) {
                     className={`w-44 md:w-72`}
                   >
                     <label style={{ display: "inline-block", width: "100%", text-align: "center" }}>
-                      INSERT AD URL {"  "}
+                      INSERT BANNER LINK {"  "}
                       <input
                         ref={inputRef}
                         style={{
                           border: "1px solid gray",
                           padding: "5px",
                           width: "90%",
-                          text-align: "center",
                         }}
                       />
                     </label>
