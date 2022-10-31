@@ -90,6 +90,7 @@ function Home({ data }) {
       }
     })();
   }, []);
+  debugger;
   useEffect(() => {
     localStorage.setItem("mozilla-support-status", "na");
     // getRandomPost();
@@ -283,12 +284,13 @@ function Home({ data }) {
         <button className={styles.btn} onClick={bottomHandler}>
           Bottom
         </button>*/}
-        {data.coinsGenerated === 0 ||
-          ((data.coinsGenerated % 15 !== 0 || validated) && (
-            <button className={styles.btn} onClick={clickHandler}>
-              Start Earning Coin
-            </button>
-          ))}
+        {(data.coinsGenerated === 0 ||
+          data.coinsGenerated % 15 !== 0 ||
+          validated) && (
+          <button className={styles.btn} onClick={clickHandler}>
+            Start Earning Coin
+          </button>
+        )}
         {/* </Link> */}
       </div>
     </div>
