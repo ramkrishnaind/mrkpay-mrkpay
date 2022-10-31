@@ -111,9 +111,9 @@ function Home({ data }) {
         // );
         debugger;
         Router.push(
-          "https://findnorton.com" + "/news/" + randomId + top
-            ? "#top"
-            : "#footer"
+          `${process.env.NEXT_PUBLIC_APP_URL}/news/${randomId}${
+            top ? "#top" : "#footer"
+          }`
         );
         // }
       });
@@ -209,7 +209,13 @@ function Home({ data }) {
             <div style={{ margin: "20px 10px", width: 380 }}>
               <label style={{ display: "inline-block", width: "100%" }}>
                 Ad Url {"  "}
-                <input style={{ border: "1px solid gray", width: "80%" }} />
+                <input
+                  style={{
+                    border: "1px solid gray",
+                    padding: "5px",
+                    width: "80%",
+                  }}
+                />
               </label>
             </div>
             <button className={styles.btn} onClick={validateHandler}>
