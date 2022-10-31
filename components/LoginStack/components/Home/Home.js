@@ -17,7 +17,7 @@ import axios from "axios";
 const date = new Date();
 function Home({ data }) {
   const inputRef = useRef();
-  data.coinsGenerated = 15;
+  // data.coinsGenerated = 15;
   const [state, dispatch] = useContext(UserContext);
   const [validated, setValidated] = useState(false);
   const [validationFailed, setValidationFailed] = useState(false);
