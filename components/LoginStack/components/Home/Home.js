@@ -250,10 +250,10 @@ function Home({ data }) {
           !validated && (
             <>
               <button
-                className={`${styles.btn} w-44 md:w-72`}
+                className={`${styles.ctvbtn} w-44 md:w-72`}
                 onClick={buttonHandler}
               >
-                Click for Verification
+                GET AD URL 
               </button>
               {adClicked && (
                 <>
@@ -262,7 +262,7 @@ function Home({ data }) {
                     className={`w-44 md:w-72`}
                   >
                     <label style={{ display: "inline-block", width: "100%" }}>
-                      Ad Url {"  "}
+                      AD URL {"  "}
                       <input
                         ref={inputRef}
                         style={{
@@ -295,10 +295,10 @@ function Home({ data }) {
                   )}
 
                   <button
-                    className={`${styles.btn} w-44 md:w-72`}
+                    className={`${styles.verfbtn} w-44 md:w-72`}
                     onClick={validateHandler}
                   >
-                    Validate
+                    Verify
                   </button>
                 </>
               )}
