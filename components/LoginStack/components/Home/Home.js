@@ -111,7 +111,7 @@ function Home({ data }) {
         // );
         debugger;
         Router.push(
-          process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + top
+          "https://findnorton.com" + "/news/" + randomId + top
             ? "#top"
             : "#footer"
         );
