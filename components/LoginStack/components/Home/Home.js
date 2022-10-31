@@ -171,7 +171,7 @@ function Home({ data }) {
           }
         }
       }
-
+      i = i === 6 ? 1 : i;
       localStorage.setItem(`validateUrl-${i}`, value);
       localStorage.setItem("goto", top ? "bottom" : "top");
       localStorage.setItem("adclicked", "false");
