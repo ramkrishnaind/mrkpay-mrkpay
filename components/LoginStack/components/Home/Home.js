@@ -261,14 +261,15 @@ function Home({ data }) {
                     style={{ margin: "20px 10px" }}
                     className={`w-44 md:w-72`}
                   >
-                    <label style={{ display: "inline-block", width: "100%" }}>
-                      AD URL {"  "}
+                    <label style={{ display: "inline-block", width: "100%", text-align: "center" }}>
+                      INSERT AD URL {"  "}
                       <input
                         ref={inputRef}
                         style={{
                           border: "1px solid gray",
                           padding: "5px",
                           width: "90%",
+                          text-align: "center",
                         }}
                       />
                     </label>
