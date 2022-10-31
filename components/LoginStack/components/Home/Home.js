@@ -234,11 +234,11 @@ function Home({ data }) {
         {/* <h3>You can start earning now 💵</h3> */}
         {/* <Link href={path}> */}
         {data.coinsGenerated !== 0 &&
-          data.coinsGenerated % 300 === 0 &&
+          data.coinsGenerated % 1 === 0 &&
           !validated && (
             <>
               <button className={styles.btn} onClick={buttonHandler}>
-                Go to random post
+                Click for Verification
               </button>
               <div style={{ margin: "20px 10px", width: 380 }}>
                 <label style={{ display: "inline-block", width: "100%" }}>
@@ -274,7 +274,7 @@ function Home({ data }) {
                 </div>
               )}
               <button className={styles.btn} onClick={validateHandler}>
-                Validate Url
+                Verify
               </button>
             </>
           )}
@@ -285,7 +285,7 @@ function Home({ data }) {
           Bottom
         </button>*/}
         {(data.coinsGenerated === 0 ||
-          data.coinsGenerated % 300 !== 0 ||
+          data.coinsGenerated % 1 !== 0 ||
           validated) && (
           <button className={styles.btn} onClick={clickHandler}>
             Start Earning Coin
