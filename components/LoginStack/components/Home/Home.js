@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import styles from "./style.module.scss";
 import Link from "next/link";
 import { UserContext } from "../../../../app/state/contexts/userContext";
@@ -10,8 +10,10 @@ import Router from "next/router";
 import axios from "axios";
 const date = new Date();
 function Home({ data }) {
+  data.coinsGenerated = 15;
   const [state, dispatch] = useContext(UserContext);
-
+  const [validated, setValidated] = useState(false);
+  const [top, setTop] = useState(true);
   const router = useRouter();
   const [path, setPath] = React.useState("");
   const result = date.toUTCString().split(" ");
@@ -87,7 +89,7 @@ function Home({ data }) {
     // debugger;
     if (path) router.replace(path);
   };
-  const topHandler = (e) => {
+  const buttonHandler = (e) => {
     e.preventDefault();
     // const res = getRandomPost();
     // debugger;
@@ -107,38 +109,38 @@ function Home({ data }) {
         //   // ,
         //   // "_blank"
         // );
+        debugger;
         Router.push(
-          process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#top"
+          process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + top
+            ? "#top"
+            : "#footer"
         );
         // }
       });
     })();
   };
-  const bottomHandler = (e) => {
-    e.preventDefault();
-    // const res = getRandomPost();
-    // debugger;
-    const url = process.env.NEXT_PUBLIC_HOST_URL + "/foreversPosts";
-    (async () => {
-      axios.get(url).then((res) => {
-        const allPosts = res.data.data;
-        const slugs = allPosts.map((obj) => getEquivalentSlug(obj.data.title));
-        const randomId = slugs[Math.floor(Math.random() * slugs.length)];
-        const status = localStorage.getItem("mozilla-support-status");
-        console.log(status);
-        // if (status == "3") {
-        // localStorage.setItem("mozilla-support-status", "4");
-        // window.open(
-        //   process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#footer"
-        //   // ,
-        //   // "_blank"
-        // );
-        Router.push(
-          process.env.NEXT_PUBLIC_APP_URL + "/news/" + randomId + "#footer"
-        );
-        // }
-      });
-    })();
+  const validateHandler = (e) => {
+    const value = e.target.value.toLowerCase().trim();
+    if (value === "") return;
+    if (value.includes("gclid=")) {
+      let i;
+      for (i = 1; i <= 5; i++) {
+        let valUrl = localStorage.getItem(`validateUrl-${i}`);
+        if (!valUrl) {
+          break;
+        } else {
+          if (valUrl.includes(value) || value.includes(valUrl)) {
+            setValidated(false);
+            return;
+          }
+        }
+      }
+      i = i % 5;
+      localStorage.setItem(`validateUrl-${i}`, value);
+      setValidated(true);
+    } else {
+      setValidated(false);
+    }
   };
   function createSlug(title) {
     let slug = "";
@@ -199,15 +201,33 @@ function Home({ data }) {
       <div className={styles.btnContainer}>
         {/* <h3>You can start earning now 💵</h3> */}
         {/* <Link href={path}> */}
+        {(data.coinsGenerated % 15 === 0 || validated) && (
+          <>
+            <button className={styles.btn} onClick={buttonHandler}>
+              Go to random post
+            </button>
+            <div style={{ margin: "20px 10px", width: 380 }}>
+              <label style={{ display: "inline-block", width: "100%" }}>
+                Ad Url {"  "}
+                <input style={{ border: "1px solid gray", width: "80%" }} />
+              </label>
+            </div>
+            <button className={styles.btn} onClick={validateHandler}>
+              Validate Url
+            </button>
+          </>
+        )}
         {/*<button className={styles.btn} onClick={topHandler}>
           Top
         </button>
         <button className={styles.btn} onClick={bottomHandler}>
           Bottom
         </button>*/}
-        <button className={styles.btn} onClick={clickHandler}>
-          Start Earning Coin
-        </button>
+        {(data.coinsGenerated % 15 !== 0 || validated) && (
+          <button className={styles.btn} onClick={clickHandler}>
+            Start Earning Coin
+          </button>
+        )}
         {/* </Link> */}
       </div>
     </div>
