@@ -237,10 +237,13 @@ function Home({ data }) {
           data.coinsGenerated % 15 === 0 &&
           !validated && (
             <>
-              <button className={styles.btn} onClick={buttonHandler}>
+              <button
+                className={`${styles.btn} w-44 md:w-72`}
+                onClick={buttonHandler}
+              >
                 Go to random post
               </button>
-              <div style={{ margin: "20px 10px", width: 380 }}>
+              <div style={{ margin: "20px 10px" }} className={`w-44 md:w-72`}>
                 <label style={{ display: "inline-block", width: "100%" }}>
                   Ad Url {"  "}
                   <input
@@ -248,7 +251,7 @@ function Home({ data }) {
                     style={{
                       border: "1px solid gray",
                       padding: "5px",
-                      width: "80%",
+                      width: "90%",
                     }}
                   />
                 </label>
@@ -273,7 +276,10 @@ function Home({ data }) {
                   </label>
                 </div>
               )}
-              <button className={styles.btn} onClick={validateHandler}>
+              <button
+                className={`${styles.btn} w-44 md:w-72`}
+                onClick={validateHandler}
+              >
                 Validate Url
               </button>
             </>
