@@ -30,6 +30,37 @@
     color: red;
   }
 }
+
+.ctvbtn {
+  border: 1.5px #228c22 solid;
+  outline: none;
+
+  background-color: #228c22;
+  color: white;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: 0.2s;
+  &:hover {
+    background-color: white;
+    color: #228c22;
+  }
+}
+.verfbtn {
+  border: 1.5px #ee7600 solid;
+  outline: none;
+
+  background-color: #ee7600;
+  color: white;
+  font-size: 14px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: 0.2s;
+  &:hover {
+    background-color: white;
+    color: #ee7600;
+  }
+}
 .btnContainer {
   width: 100%;
   display: flex;
