@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import styles from "./style.module.scss";
 import Link from "next/link";
 import { UserContext } from "../../../../app/state/contexts/userContext";
@@ -10,9 +16,11 @@ import Router from "next/router";
 import axios from "axios";
 const date = new Date();
 function Home({ data }) {
+  const inputRef = useRef();
   data.coinsGenerated = 15;
   const [state, dispatch] = useContext(UserContext);
   const [validated, setValidated] = useState(false);
+  const [validationFailed, setValidationFailed] = useState(false);
   const [top, setTop] = useState(true);
   const router = useRouter();
   const [path, setPath] = React.useState("");
@@ -33,6 +41,16 @@ function Home({ data }) {
       console.log(targetObj);
     }
   }
+  useEffect(() => {
+    const goto = localStorage.getItem("goto");
+    if (goto) {
+      if (goto === "top") {
+        setTop(true);
+      } else {
+        setTop(false);
+      }
+    }
+  }, []);
   function getEquivalentSlug(title) {
     let slug = "";
     let oldTitle = title;
@@ -120,7 +138,8 @@ function Home({ data }) {
     })();
   };
   const validateHandler = (e) => {
-    const value = e.target.value.toLowerCase().trim();
+    debugger;
+    const value = inputRef.current.value.toLowerCase().trim();
     if (value === "") return;
     if (value.includes("gclid=")) {
       let i;
@@ -131,15 +150,27 @@ function Home({ data }) {
         } else {
           if (valUrl.includes(value) || value.includes(valUrl)) {
             setValidated(false);
+            inputRef.current.value = "";
+            setValidationFailed(true);
+            setTimeout(() => {
+              setValidationFailed(false);
+            }, 2000);
             return;
           }
         }
       }
       i = i % 5;
       localStorage.setItem(`validateUrl-${i}`, value);
+      localStorage.setItem("goto", top ? "bottom" : "top");
+      inputRef.current.value = "";
       setValidated(true);
     } else {
+      inputRef.current.value = "";
       setValidated(false);
+      setValidationFailed(true);
+      setTimeout(() => {
+        setValidationFailed(false);
+      }, 2000);
     }
   };
   function createSlug(title) {
@@ -201,7 +232,7 @@ function Home({ data }) {
       <div className={styles.btnContainer}>
         {/* <h3>You can start earning now 💵</h3> */}
         {/* <Link href={path}> */}
-        {(data.coinsGenerated % 15 === 0 || validated) && (
+        {data.coinsGenerated % 15 === 0 && !validated && (
           <>
             <button className={styles.btn} onClick={buttonHandler}>
               Go to random post
@@ -210,6 +241,7 @@ function Home({ data }) {
               <label style={{ display: "inline-block", width: "100%" }}>
                 Ad Url {"  "}
                 <input
+                  ref={inputRef}
                   style={{
                     border: "1px solid gray",
                     padding: "5px",
@@ -218,6 +250,26 @@ function Home({ data }) {
                 />
               </label>
             </div>
+            {validationFailed && (
+              <div
+                style={{
+                  margin: "20px 10px",
+                  border: "1px solid red",
+                  width: 280,
+                }}
+              >
+                <label
+                  style={{
+                    display: "inline-block",
+                    width: "100%",
+                    color: "red",
+                    padding: "5px",
+                  }}
+                >
+                  Validation failed
+                </label>
+              </div>
+            )}
             <button className={styles.btn} onClick={validateHandler}>
               Validate Url
             </button>
