@@ -317,6 +317,7 @@ function Home({ data }) {
                           width: "90%",
                           color: "red",
                           padding: "5px",
+                          textAlign: 'center',
                         }}
                       >
                         Verification Failed
