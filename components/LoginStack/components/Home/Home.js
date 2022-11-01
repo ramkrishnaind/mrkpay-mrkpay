@@ -248,9 +248,18 @@ function Home({ data }) {
         {currentDate}.
       </p>*/}
       <p><h4 className="text-lg text-center  my-5">New MRKPay Update Video is Out</h4></p>
-<p className="text-lg text-center  my-5"><Link style={{color: "blue"}} href="https://youtu.be/1ynhk6T8038">https://youtu.be/1ynhk6T8038
-
-</Link></p>
+        <div style={{ padding: 5 }}>
+      <Link href="https://youtu.be/1ynhk6T8038">
+        <a style={{
+          textDecoration: 'underline',
+          color: 'blue',
+          fontSize: 24
+        }}>
+          https://youtu.be/1ynhk6T8038
+        </a>
+      </Link>
+</div>
+{/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/1ynhk6T8038">https://youtu.be/1ynhk6T8038</Link></p>*/}
       <div className={`flex  ${styles.percentage1}`}>
         <h2 className="min-w-[6rem] text-base mb-3">
           Coins: <span>{data.coinsGenerated || 0}</span>
