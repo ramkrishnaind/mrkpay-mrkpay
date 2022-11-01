@@ -149,42 +149,52 @@ function Home({ data }) {
       });
     })();
   };
-  const validateHandler = (e) => {
-    debugger;
-    const value = inputRef.current.value.toLowerCase().trim();
-    if (value === "" || value.length < 15) return;
-    if (value.includes("gclid=") || value.includes("utm_source=")) {
-      let i;
-      for (i = 1; i <= 5; i++) {
-        let valUrl = localStorage.getItem(`validateUrl-${i}`);
-        if (!valUrl) {
-          break;
-        } else {
-          if (valUrl.includes(value) || value.includes(valUrl)) {
-            setValidated(false);
-            inputRef.current.value = "";
-            setValidationFailed(true);
-            setTimeout(() => {
-              setValidationFailed(false);
-            }, 2000);
-            return;
+  const validateHandler = async (e) => {
+    const permission = await navigator.permissions.query({
+      name: "clipboard-read",
+    });
+    if (permission.state === "denied") {
+      alert("Not allowed to read clipboard.");
+      return;
+    }
+    const clipboardValue = await navigator.clipboard.readText();
+    inputRef.current.value = clipboardValue;
+    setTimeout(() => {
+      const value = inputRef.current.value.toLowerCase().trim();
+      if (value === "" || value.length < 15) return;
+      if (value.includes("gclid=") || value.includes("utm_source=")) {
+        let i;
+        for (i = 1; i <= 5; i++) {
+          let valUrl = localStorage.getItem(`validateUrl-${i}`);
+          if (!valUrl) {
+            break;
+          } else {
+            if (valUrl.includes(value) || value.includes(valUrl)) {
+              setValidated(false);
+              inputRef.current.value = "";
+              setValidationFailed(true);
+              setTimeout(() => {
+                setValidationFailed(false);
+              }, 2000);
+              return;
+            }
           }
         }
+        i = i === 6 ? 1 : i;
+        localStorage.setItem(`validateUrl-${i}`, value);
+        localStorage.setItem("goto", top ? "bottom" : "top");
+        localStorage.setItem("adclicked", "false");
+        inputRef.current.value = "";
+        setValidated(true);
+      } else {
+        inputRef.current.value = "";
+        setValidated(false);
+        setValidationFailed(true);
+        setTimeout(() => {
+          setValidationFailed(false);
+        }, 2000);
       }
-      i = i === 6 ? 1 : i;
-      localStorage.setItem(`validateUrl-${i}`, value);
-      localStorage.setItem("goto", top ? "bottom" : "top");
-      localStorage.setItem("adclicked", "false");
-      inputRef.current.value = "";
-      setValidated(true);
-    } else {
-      inputRef.current.value = "";
-      setValidated(false);
-      setValidationFailed(true);
-      setTimeout(() => {
-        setValidationFailed(false);
-      }, 2000);
-    }
+    }, 2000);
   };
   function createSlug(title) {
     let slug = "";
@@ -246,14 +256,14 @@ function Home({ data }) {
         {/* <h3>You can start earning now 💵</h3> */}
         {/* <Link href={path}> */}
         {data.coinsGenerated !== 0 &&
-          data.coinsGenerated % 50 === 0 &&
+          data.coinsGenerated % 1 === 0 &&
           !validated && (
             <>
               <button
                 className={`${styles.ctvbtn} w-44 md:w-72`}
                 onClick={buttonHandler}
               >
-                GET BANNER LINK 
+                GET BANNER LINK
               </button>
               {adClicked && (
                 <>
@@ -265,6 +275,7 @@ function Home({ data }) {
                       INSERT BANNER LINK {"  "}
                       <input
                         ref={inputRef}
+                        readOnly
                         style={{
                           border: "1px solid gray",
                           padding: "5px",
@@ -298,7 +309,7 @@ function Home({ data }) {
                     className={`${styles.verfbtn} w-44 md:w-72`}
                     onClick={validateHandler}
                   >
-                    VERIFY
+                    PASTE & VERIFY
                   </button>
                 </>
               )}
@@ -311,7 +322,7 @@ function Home({ data }) {
           Bottom
         </button>*/}
         {(data.coinsGenerated === 0 ||
-          data.coinsGenerated % 50 !== 0 ||
+          data.coinsGenerated % 1 !== 0 ||
           validated) && (
           <button className={styles.btn} onClick={clickHandler}>
             Start Earning Coin
