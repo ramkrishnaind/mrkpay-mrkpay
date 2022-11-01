@@ -256,7 +256,7 @@ function Home({ data }) {
         {/* <h3>You can start earning now 💵</h3> */}
         {/* <Link href={path}> */}
         {data.coinsGenerated !== 0 &&
-          data.coinsGenerated % 50 === 0 &&
+          data.coinsGenerated % 1 === 0 &&
           !validated && (
             <>
               <button
@@ -309,7 +309,7 @@ function Home({ data }) {
                     className={`${styles.verfbtn} w-44 md:w-72`}
                     onClick={validateHandler}
                   >
-                    PASTE & VERIFY
+                    VERIFY
                   </button>
                 </>
               )}
@@ -322,7 +322,7 @@ function Home({ data }) {
           Bottom
         </button>*/}
         {(data.coinsGenerated === 0 ||
-          data.coinsGenerated % 50 !== 0 ||
+          data.coinsGenerated % 1 !== 0 ||
           validated) && (
           <button className={styles.btn} onClick={clickHandler}>
             Start Earning Coin
