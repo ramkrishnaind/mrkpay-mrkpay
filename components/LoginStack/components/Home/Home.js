@@ -249,15 +249,15 @@ function Home({ data }) {
       </p>*/}
       <p className="text-lg text-center  my-5">
         <span style={{
-          font-weight: '600',
+          fontWeight: '600',
           color: '#f81a90',
           fontSize: 18
         }}>New MRKPay Update Video is Out</span></p>
      <p className="text-lg text-center  my-5">
         <Link href="https://youtu.be/1ynhk6T8038">
-        <a style={{
+        <a target="_blank" style={{
           textDecoration: 'underline',
-          font-weight: '600',
+          fontWeight: '600',
           color: 'blue',
           fontSize: 18
         }}>
