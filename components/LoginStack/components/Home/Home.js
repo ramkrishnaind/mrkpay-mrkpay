@@ -247,6 +247,7 @@ function Home({ data }) {
       <p className={`${styles.date} text-lg text-center  my-5`}>
         {currentDate}.
       </p>
+      <p><h2 className="text-lg text-center  my-5">Check Our YouTube Channel MRKPay</h2></p>
       <div className={`flex  ${styles.percentage1}`}>
         <h2 className="min-w-[6rem] text-base mb-3">
           Coins: <span>{data.coinsGenerated || 0}</span>
@@ -295,7 +296,7 @@ function Home({ data }) {
                       <label
                         style={{
                           display: "inline-block",
-                          width: "100%",
+                          width: "90%",
                           color: "red",
                           padding: "5px",
                         }}
