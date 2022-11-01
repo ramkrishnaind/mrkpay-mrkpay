@@ -271,8 +271,8 @@ function Home({ data }) {
                     style={{ margin: "20px 10px" }}
                     className={`w-44 md:w-72`}
                   >
-                    <label style={{ display: "inline-block", width: "100%" }}>
-                      INSERT BANNER LINK {"  "}
+                    <label style={{ display: "none", width: "100%" }}>
+                      YOUR LINK {"  "}
                       <input
                         ref={inputRef}
                         readOnly
@@ -300,7 +300,7 @@ function Home({ data }) {
                           padding: "5px",
                         }}
                       >
-                        Validation failed
+                        Verification Failed
                       </label>
                     </div>
                   )}
