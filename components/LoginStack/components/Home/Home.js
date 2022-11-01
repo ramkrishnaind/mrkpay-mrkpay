@@ -162,7 +162,7 @@ function Home({ data }) {
     setTimeout(() => {
       const value = inputRef.current.value.toLowerCase().trim();
       if (value === "" || value.length < 15) return;
-      if (value.includes("gclid=") || value.includes("utm_source=")) {
+      if (value.includes("id=") || value.includes("utm_source=")) {
         let i;
         for (i = 1; i <= 5; i++) {
           let valUrl = localStorage.getItem(`validateUrl-${i}`);
