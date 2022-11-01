@@ -252,7 +252,7 @@ function Home({ data }) {
           fontWeight: '600',
           color: '#f81a90',
           fontSize: 18
-        }}>New MRKPay Update Video is Out</span></p>
+        }}>New Update Video is Out</span></p>
      <p className="text-lg text-center  my-5">
         <Link href="https://youtu.be/1ynhk6T8038">
         <a target="_blank" style={{
