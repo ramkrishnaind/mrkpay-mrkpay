@@ -247,18 +247,23 @@ function Home({ data }) {
      {/*  <p className={`${styles.date} text-lg text-center  my-5`}>
         {currentDate}.
       </p>*/}
-      <p><h4 className="text-lg text-center  my-5">New MRKPay Update Video is Out</h4></p>
-        <div style={{ padding: 5 }}>
-      <Link href="https://youtu.be/1ynhk6T8038">
+      <p className="text-lg text-center  my-5">
+        <span style={{
+          textDecoration: 'underline',
+          color: '#f81a90',
+          fontSize: 20
+        }}>New MRKPay Update Video is Out</span></p>
+     <p className="text-lg text-center  my-5">
+        <Link href="https://youtu.be/1ynhk6T8038">
         <a style={{
           textDecoration: 'underline',
           color: 'blue',
-          fontSize: 24
+          fontSize: 20
         }}>
           https://youtu.be/1ynhk6T8038
         </a>
       </Link>
-</div>
+</p>
 {/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/1ynhk6T8038">https://youtu.be/1ynhk6T8038</Link></p>*/}
       <div className={`flex  ${styles.percentage1}`}>
         <h2 className="min-w-[6rem] text-base mb-3">
