@@ -247,7 +247,7 @@ function Home({ data }) {
       <p className={`${styles.date} text-lg text-center  my-5`}>
         {currentDate}.
       </p>
-      <p><h4 className="text-lg text-center  my-5">New MRKPay Update Video is Out</h4><Link href="https://youtu.be/1ynhk6T8038">https://youtu.be/1ynhk6T8038
+      <p><h4 className="text-lg text-center  my-5">New MRKPay Update Video is Out</h4></p><p><Link href="https://youtu.be/1ynhk6T8038">https://youtu.be/1ynhk6T8038
 
 </Link></p>
       <div className={`flex  ${styles.percentage1}`}>
