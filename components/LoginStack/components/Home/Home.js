@@ -307,8 +307,8 @@ function Home({ data }) {
                     <div
                       style={{
                         margin: "20px 10px",
-                        border: "1px solid red",
-                        width: 90%,
+                        border: "0px solid red",
+                        width: 200,
                       }}
                     >
                       <label
