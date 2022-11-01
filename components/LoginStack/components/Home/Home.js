@@ -244,10 +244,11 @@ function Home({ data }) {
   return (
     <div className={styles.container}>
       <h2 className="text-lg text-center  my-5">Welcome, {data.name} 😎</h2>
-      <p className={`${styles.date} text-lg text-center  my-5`}>
+     {/*  <p className={`${styles.date} text-lg text-center  my-5`}>
         {currentDate}.
-      </p>
-      <p><h4 className="text-lg text-center  my-5">New MRKPay Update Video is Out</h4></p><p className="text-lg text-center  my-5"><Link href="https://youtu.be/1ynhk6T8038">https://youtu.be/1ynhk6T8038
+      </p>*/}
+      <p><h4 className="text-lg text-center  my-5">New MRKPay Update Video is Out</h4></p>
+<p className="text-lg text-center  my-5"><Link style={{color: "blue"}} href="https://youtu.be/1ynhk6T8038">https://youtu.be/1ynhk6T8038
 
 </Link></p>
       <div className={`flex  ${styles.percentage1}`}>
