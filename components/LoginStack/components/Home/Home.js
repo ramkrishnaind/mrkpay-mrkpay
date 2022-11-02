@@ -252,20 +252,20 @@ function Home({ data }) {
           fontWeight: '600',
           color: '#f81a90',
           fontSize: 18
-        }}>New Update Video is Out</span></p>
+        }}>Verify Button Video Out</span></p>
      <p className="text-lg text-center  my-5">
-        <Link href="https://youtu.be/1ynhk6T8038">
+        <Link href="https://youtu.be/Bj3m_aFSHQo">
         <a target="_blank" style={{
           textDecoration: 'underline',
           fontWeight: '600',
           color: 'blue',
           fontSize: 18
         }}>
-          https://youtu.be/1ynhk6T8038
+          https://youtu.be/Bj3m_aFSHQo
         </a>
       </Link>
 </p>
-{/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/1ynhk6T8038">https://youtu.be/1ynhk6T8038</Link></p>*/}
+{/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/Bj3m_aFSHQo">https://youtu.be/Bj3m_aFSHQo</Link></p>*/}
       <div className={`flex  ${styles.percentage1}`}>
         <h2 className="min-w-[6rem] text-base mb-3">
           Coins: <span>{data.coinsGenerated || 0}</span>
