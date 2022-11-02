@@ -244,9 +244,28 @@ function Home({ data }) {
   return (
     <div className={styles.container}>
       <h2 className="text-lg text-center  my-5">Welcome, {data.name} 😎</h2>
-      <p className={`${styles.date} text-lg text-center  my-5`}>
+     {/*  <p className={`${styles.date} text-lg text-center  my-5`}>
         {currentDate}.
-      </p>
+      </p>*/}
+      <p className="text-lg text-center  my-5">
+        <span style={{
+          fontWeight: '600',
+          color: '#f81a90',
+          fontSize: 18
+        }}>Verify Button Video Out</span></p>
+     <p className="text-lg text-center  my-5">
+        <Link href="https://youtu.be/Bj3m_aFSHQo">
+        <a target="_blank" style={{
+          textDecoration: 'underline',
+          fontWeight: '600',
+          color: 'blue',
+          fontSize: 18
+        }}>
+          https://youtu.be/Bj3m_aFSHQo
+        </a>
+      </Link>
+</p>
+{/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/Bj3m_aFSHQo">https://youtu.be/Bj3m_aFSHQo</Link></p>*/}
       <div className={`flex  ${styles.percentage1}`}>
         <h2 className="min-w-[6rem] text-base mb-3">
           Coins: <span>{data.coinsGenerated || 0}</span>
@@ -288,16 +307,17 @@ function Home({ data }) {
                     <div
                       style={{
                         margin: "20px 10px",
-                        border: "1px solid red",
-                        width: 280,
+                        border: "0px solid red",
+                        width: 200,
                       }}
                     >
                       <label
                         style={{
                           display: "inline-block",
-                          width: "100%",
+                          width: "90%",
                           color: "red",
                           padding: "5px",
+                          textAlign: 'center',
                         }}
                       >
                         Verification Failed
