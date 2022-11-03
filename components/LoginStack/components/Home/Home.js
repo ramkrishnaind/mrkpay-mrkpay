@@ -252,7 +252,7 @@ function Home({ data }) {
           fontWeight: '600',
           color: '#f81a90',
           fontSize: 18
-        }}>Verify Button Video Out</span></p>
+        }}>Get Banner Link Video👇</span></p>
      <p className="text-lg text-center  my-5">
         <Link href="https://youtu.be/Bj3m_aFSHQo">
         <a target="_blank" style={{
