@@ -281,7 +281,7 @@ function Home({ data }) {
         {/* <h3>You can start earning now 💵</h3> */}
         {/* <Link href={path}> */}
         {data.coinsGenerated !== 0 &&
-          data.coinsGenerated % 50 === 0 &&
+          data.coinsGenerated % 40 === 0 &&
           !validated && (
             <>
               <button
