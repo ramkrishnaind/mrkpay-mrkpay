@@ -265,12 +265,12 @@ function Home({ data }) {
         </a>
       </Link>
 </p>
- <p className="text-lg text-center  my-5">
+ {/*<p className="text-lg text-center  my-5">
         <span style={{
           fontWeight: '600',
           color: 'red',
           fontSize: 18
-        }}>Withdrawal Coin Fixed 👍</span></p>
+        }}>Withdrawal Coin Fixed 👍</span></p>*/}
 {/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/Bj3m_aFSHQo">https://youtu.be/Bj3m_aFSHQo</Link></p>*/}
       <div className={`flex  ${styles.percentage1}`}>
         <h2 className="min-w-[6rem] text-base mb-3">
