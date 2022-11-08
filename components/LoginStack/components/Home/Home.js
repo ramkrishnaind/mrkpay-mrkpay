@@ -270,7 +270,7 @@ function Home({ data }) {
           fontWeight: '600',
           color: 'red',
           fontSize: 18
-        }}All User's Coin Will Be RESET on 9 November 11:59pm⏱️</span></p>
+        }}All User's Coin Will Be RESET on 9 November 11:59pm</span></p>
 {/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/Bj3m_aFSHQo">https://youtu.be/Bj3m_aFSHQo</Link></p>*/}
       <div className={`flex  ${styles.percentage1}`}>
         <h2 className="min-w-[6rem] text-base mb-3">
