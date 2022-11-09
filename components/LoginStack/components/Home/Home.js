@@ -252,16 +252,16 @@ function Home({ data }) {
           fontWeight: '600',
           color: '#f81a90',
           fontSize: 18
-        }}>Get Banner Link Video👇</span></p>
+        }}> Today Coin RESET Video👇</span></p>
      <p className="text-lg text-center  my-5">
-        <Link href="https://youtu.be/Bj3m_aFSHQo">
+        <Link href="https://youtu.be/jPy7SNiijoY">
         <a target="_blank" style={{
           textDecoration: 'underline',
           fontWeight: '600',
           color: 'blue',
           fontSize: 18
         }}>
-          https://youtu.be/Bj3m_aFSHQo
+          https://youtu.be/jPy7SNiijoY
         </a>
       </Link>
 </p>
