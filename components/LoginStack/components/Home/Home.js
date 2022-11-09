@@ -161,7 +161,18 @@ function Home({ data }) {
     inputRef.current.value = clipboardValue;
     setTimeout(() => {
       const value = inputRef.current.value.toLowerCase().trim();
-      if (value === "" || value.length < 10 || value.includes("googleadservices") || value.includes("adclick.g.doubleclick")) return;
+      if (
+        value === "" ||
+        value.length < 10 ||
+        value.includes("googleadservices") ||
+        value.includes("adclick.g.doubleclick")
+      ) {
+        setValidationFailed(true);
+        setTimeout(() => {
+          setValidationFailed(false);
+        }, 2000);
+        return;
+      }
       if (value.includes("id=") || value.includes("utm_source=")) {
         let i;
         for (i = 1; i <= 5; i++) {
@@ -244,34 +255,48 @@ function Home({ data }) {
   return (
     <div className={styles.container}>
       <h2 className="text-lg text-center  my-5">Welcome, {data.name} 😎</h2>
-     {/*  <p className={`${styles.date} text-lg text-center  my-5`}>
+      {/*  <p className={`${styles.date} text-lg text-center  my-5`}>
         {currentDate}.
       </p>*/}
       <p className="text-lg text-center  my-5">
-        <span style={{
-          fontWeight: '600',
-          color: '#f81a90',
-          fontSize: 18
-        }}> Today Coin RESET Video👇</span></p>
-     <p className="text-lg text-center  my-5">
+        <span
+          style={{
+            fontWeight: "600",
+            color: "#f81a90",
+            fontSize: 18,
+          }}
+        >
+          {" "}
+          Today Coin RESET Video👇
+        </span>
+      </p>
+      <p className="text-lg text-center  my-5">
         <Link href="https://youtu.be/jPy7SNiijoY">
-        <a target="_blank" style={{
-          textDecoration: 'underline',
-          fontWeight: '600',
-          color: 'blue',
-          fontSize: 18
-        }}>
-          https://youtu.be/jPy7SNiijoY
-        </a>
-      </Link>
-</p>
- <p className="text-lg text-center  my-5">
-        <span style={{
-          fontWeight: '600',
-          color: 'red',
-          fontSize: 18
-        }}>All User's Coin Will Be RESET on 9 November 11:59pm</span></p>
-{/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/Bj3m_aFSHQo">https://youtu.be/Bj3m_aFSHQo</Link></p>*/}
+          <a
+            target="_blank"
+            style={{
+              textDecoration: "underline",
+              fontWeight: "600",
+              color: "blue",
+              fontSize: 18,
+            }}
+          >
+            https://youtu.be/jPy7SNiijoY
+          </a>
+        </Link>
+      </p>
+      <p className="text-lg text-center  my-5">
+        <span
+          style={{
+            fontWeight: "600",
+            color: "red",
+            fontSize: 18,
+          }}
+        >
+          All User's Coin Will Be RESET on 9 November 11:59pm
+        </span>
+      </p>
+      {/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/Bj3m_aFSHQo">https://youtu.be/Bj3m_aFSHQo</Link></p>*/}
       <div className={`flex  ${styles.percentage1}`}>
         <h2 className="min-w-[6rem] text-base mb-3">
           Coins: <span>{data.coinsGenerated || 0}</span>
@@ -323,7 +348,7 @@ function Home({ data }) {
                           width: "90%",
                           color: "red",
                           padding: "5px",
-                          textAlign: 'center',
+                          textAlign: "center",
                         }}
                       >
                         Verification Failed
