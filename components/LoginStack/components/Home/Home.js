@@ -161,7 +161,7 @@ function Home({ data }) {
     inputRef.current.value = clipboardValue;
     setTimeout(() => {
       const value = inputRef.current.value.toLowerCase().trim();
-      if (value === "" || value.length < 10 || value.includes("adclick.g.doubleclick") || value.includes("googleadservices")) return;
+      if (value === "" || value.length < 10 || value.includes("googleadservices")) return;
       if (value.includes("id=") || value.includes("utm_source=")) {
         let i;
         for (i = 1; i <= 5; i++) {
