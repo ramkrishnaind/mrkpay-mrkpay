@@ -46,7 +46,7 @@ function Dashboard() {
           >
             Posts
           </a>
-          <a
+          {/* <a
             onClick={() => setSelectedTab("Reports")}
             style={{
               borderBottom: `2px ${
@@ -55,9 +55,9 @@ function Dashboard() {
             }}
           >
             Reports
-          </a>
+          </a> */}
 
-          {/* <a
+          <a
             onClick={() => setSelectedTab("Home")}
             style={{
               borderBottom: `2px ${
@@ -66,12 +66,12 @@ function Dashboard() {
             }}
           >
             Report
-          </a> */}
+          </a>
         </nav>
         <div className={styles.tabContent}>
           {selectedTab === "Settings" && <Settings />}
           {selectedTab === "Posts" && <Posts />}
-          {selectedTab === "Reports" && <Reports />}
+          {/* {selectedTab === "Reports" && <Reports />} */}
           {selectedTab === "Pending" && <PendingPayments />}
           {selectedTab === "Home" && <Home />}
         </div>
