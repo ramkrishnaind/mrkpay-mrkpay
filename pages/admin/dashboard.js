@@ -71,7 +71,7 @@ function Dashboard() {
         <div className={styles.tabContent}>
           {selectedTab === "Settings" && <Settings />}
           {selectedTab === "Posts" && <Posts />}
-          {/*  {selectedTab === "Reports" && <Reports />} */}
+          {selectedTab === "Reports" && <Reports />}
           {selectedTab === "Pending" && <PendingPayments />}
           {selectedTab === "Home" && <Home />}
         </div>
