@@ -258,7 +258,7 @@ function Home({ data }) {
       {/*  <p className={`${styles.date} text-lg text-center  my-5`}>
         {currentDate}.
       </p>*/}
-      <p className="text-lg text-center  my-5">
+  {/*      <p className="text-lg text-center  my-5">
         <span
           style={{
             fontWeight: "600",
@@ -284,7 +284,7 @@ function Home({ data }) {
             https://youtu.be/jPy7SNiijoY
           </a>
         </Link>
-      </p>
+      </p>*/}
       <p className="text-lg text-center  my-5">
         <span
           style={{
@@ -293,7 +293,7 @@ function Home({ data }) {
             fontSize: 18,
           }}
         >
-          All User's Coin Will Be RESET on 9 November 11:59pm
+          All User's Coin Reset Successfully
         </span>
       </p>
       {/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/Bj3m_aFSHQo">https://youtu.be/Bj3m_aFSHQo</Link></p>*/}
