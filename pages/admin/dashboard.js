@@ -54,7 +54,7 @@ function Dashboard() {
               } solid`,
             }}
           >
-            User
+            Reports
           </a>
 
           {/* <a
