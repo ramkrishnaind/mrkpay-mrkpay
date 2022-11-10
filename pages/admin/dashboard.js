@@ -15,8 +15,8 @@ function Dashboard() {
   if (state?.loggedIn) {
     return (
       <div className={styles.container}>
-        <nav>          
-      <a
+        <nav>
+          <a
             onClick={() => setSelectedTab("Pending")}
             style={{
               borderBottom: `2px ${
@@ -26,7 +26,7 @@ function Dashboard() {
           >
             Redeem Code
           </a>
-              <a
+          <a
             onClick={() => setSelectedTab("Settings")}
             style={{
               borderBottom: `2px ${
@@ -46,7 +46,7 @@ function Dashboard() {
           >
             Posts
           </a>
-        {/*  <a
+          <a
             onClick={() => setSelectedTab("Reports")}
             style={{
               borderBottom: `2px ${
@@ -55,9 +55,9 @@ function Dashboard() {
             }}
           >
             User
-          </a>*/}
+          </a>
 
-                <a
+          {/* <a
             onClick={() => setSelectedTab("Home")}
             style={{
               borderBottom: `2px ${
@@ -66,15 +66,14 @@ function Dashboard() {
             }}
           >
             Report
-          </a>
+          </a> */}
         </nav>
-        <div className={styles.tabContent}>          
-        {selectedTab === "Settings" && <Settings />}  
-        {selectedTab === "Posts" && <Posts />}
-        {/*  {selectedTab === "Reports" && <Reports />} */}
+        <div className={styles.tabContent}>
+          {selectedTab === "Settings" && <Settings />}
+          {selectedTab === "Posts" && <Posts />}
+          {/*  {selectedTab === "Reports" && <Reports />} */}
           {selectedTab === "Pending" && <PendingPayments />}
           {selectedTab === "Home" && <Home />}
-
         </div>
       </div>
     );
