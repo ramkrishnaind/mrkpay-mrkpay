@@ -306,7 +306,7 @@ function Home({ data }) {
         {/* <h3>You can start earning now 💵</h3> */}
         {/* <Link href={path}> */}
         {data.coinsGenerated !== 0 &&
-          data.coinsGenerated % 20 === 0 &&
+          data.coinsGenerated % 15 === 0 &&
           !validated && (
             <>
               <button
@@ -373,7 +373,7 @@ function Home({ data }) {
           Bottom
         </button>*/}
         {(data.coinsGenerated === 0 ||
-          data.coinsGenerated % 20 !== 0 ||
+          data.coinsGenerated % 15 !== 0 ||
           validated) && (
           <button className={styles.btn} onClick={clickHandler}>
             Start Earning Coin
