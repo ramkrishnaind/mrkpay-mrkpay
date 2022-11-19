@@ -258,7 +258,7 @@ function Home({ data }) {
       {/*  <p className={`${styles.date} text-lg text-center  my-5`}>
         {currentDate}.
       </p>*/}
-  {/*      <p className="text-lg text-center  my-5">
+        <p className="text-lg text-center  my-5">
         <span
           style={{
             fontWeight: "600",
@@ -267,11 +267,11 @@ function Home({ data }) {
           }}
         >
           {" "}
-          Today Coin RESET Video👇
+          MRKPAY Update Video👇
         </span>
       </p>
       <p className="text-lg text-center  my-5">
-        <Link href="https://youtu.be/jPy7SNiijoY">
+        <Link href="https://youtu.be/yg6J5zmu5lY">
           <a
             target="_blank"
             style={{
@@ -281,11 +281,11 @@ function Home({ data }) {
               fontSize: 18,
             }}
           >
-            https://youtu.be/jPy7SNiijoY
+            https://youtu.be/yg6J5zmu5lY
           </a>
         </Link>
-      </p>*/}
-      <p className="text-lg text-center  my-5">
+      </p>
+     {/* <p className="text-lg text-center  my-5">
         <span
           style={{
             fontWeight: "600",
@@ -295,7 +295,7 @@ function Home({ data }) {
         >
           All User's Coin Reset Successfully
         </span>
-      </p>
+      </p>*/}
       {/*<p className="text-lg text-center  my-5"><Link  href="https://youtu.be/Bj3m_aFSHQo">https://youtu.be/Bj3m_aFSHQo</Link></p>*/}
       <div className={`flex  ${styles.percentage1}`}>
         <h2 className="min-w-[6rem] text-base mb-3">
